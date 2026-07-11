@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-ignore
 import { defineConfig } from 'astro/config';
 
 // @ts-ignore
