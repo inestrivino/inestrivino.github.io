@@ -13,34 +13,9 @@ import Layout from "../layouts/Layout.astro";
 		</p>
 
 		<button
-			id="sfx-button"
-			class="cursor-pointer border border-purple-500 hover:bg-purple-500 hover:text-black transition-colors duration-200 px-6 py-2 rounded font-bold"
+			class="sfx-button cursor-pointer border border-purple-500 hover:bg-purple-500 hover:text-black transition-colors duration-200 px-6 py-2 rounded font-bold"
 		>
 			Botón de prueba
 		</button>
 	</main>
 </Layout>
-
-<script>
-  	// @ts-ignore
-  	import { Howl } from 'howler';
-
-	// Configuras el sonido
-	const click = new Howl({
-		src: ["/audio/tone1.ogg"]
-	});
-	const hover = new Howl({
-		src: ["/audio/lowRandom.ogg"]
-	});
-
-
-	// Lo asignas al evento
-	const button = document.getElementById("sfx-button");
-	button?.addEventListener("click", () => {
-		click.play();
-	});
-
-	button?.addEventListener("mouseenter", () => {
-		hover.play();
-	});
-</script>
