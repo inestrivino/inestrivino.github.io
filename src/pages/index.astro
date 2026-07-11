@@ -1,21 +1,64 @@
 ---
-// src/pages/index.astro
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PostRow from '../components/PostsRow.astro';
+
+// Test data
+// TO DO: LOAD THEM FROM AVAILABLE LIST OF MARKDOWN PROJECTS AND POSTS
+const proyectos = [
+  { title: "Título 1", description: "Descripción corta del proyecto" },
+  { title: "Título 2", description: "Descripción corta del proyecto" },
+  { title: "Título 3", description: "Descripción corta del proyecto" },
+  { title: "Título 4", description: "Descripción corta del proyecto" },
+];
+
+const posts = [
+  { title: "Post de ejemplo", date: "11 Jul. 2026", url: "/blog/post-1" },
+  { title: "Post de ejemplo", date: "11 Jul. 2026", url: "/blog/post-2" },
+  { title: "Post de ejemplo", date: "11 Jul. 2026", url: "/blog/post-3" },
+  { title: "Post de ejemplo", date: "11 Jul. 2026", url: "/blog/post-4" },
+];
 ---
 
-<Layout>
-	<main class="flex flex-col items-center justify-center min-h-screen p-4">
-		<h1 class="text-4xl font-bold mb-4 tracking-wider">
-			Inés Triviño
-		</h1>
-		<p class="text-lg text-purple-400 mb-6 text-center w-2/3">
-			Página en progreso. Usando Astro, Tailwind CSS y Howler JS. Librería de sonidos de Kenney.
-		</p>
+<Layout title="Inés Triviño | Inicio">
+  
+  <Hero />
 
-		<button
-			class="sfx-button cursor-pointer border border-purple-500 hover:bg-purple-500 hover:text-black transition-colors duration-200 px-6 py-2 rounded font-bold"
-		>
-			Botón de prueba
-		</button>
-	</main>
+  <hr class="border-t border-dashed border-[#a7a2e7]/30 my-12" />
+
+  <section class="mb-12 max-w-4xl mx-auto">
+    <h2 class="text-2xl font-bold text-center mb-8 tracking-wide">Proyectos recientes</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {proyectos.map((pro) => (
+        <ProjectCard title={pro.title} description={pro.description} />
+      ))}
+    </div>
+
+    <div class="flex justify-center mt-8">
+      <a href="/proyectos" class="btn-retro-text">
+        Ver todos
+      </a>
+    </div>
+  </section>
+
+  <hr class="border-t border-dashed border-[#a7a2e7]/30 my-12" />
+
+  <section class="mb-6 max-w-4xl mx-auto">
+    <h2 class="text-2xl font-bold text-center mb-8 tracking-wide">Posts recientes</h2>
+    
+    <div class="max-w-xl mx-auto flex flex-col gap-2">
+      {posts.map((post) => (
+        <PostRow title={post.title} date={post.date} url={post.url} />
+      ))}
+    </div>
+
+    <div class="flex justify-center mt-8">
+      <a href="/blog" class="btn-retro-text">
+        Ver todos
+      </a>
+    </div>
+  </section>
+
 </Layout>

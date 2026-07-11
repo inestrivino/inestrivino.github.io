@@ -1,0 +1,111 @@
+---
+// Obtains the current route
+const { pathname } = Astro.url;
+
+const navItems = [
+  { href: "/", label: "inicio" },
+  { href: "/proyectos", label: "proyectos" },
+  { href: "/blog", label: "blog" },
+  { href: "/contacto", label: "contacto" },
+  { href: "/cli", label: "CLI" },
+];
+
+// Function that checks which nav element should be "active"
+const isActive = (href: string) => {
+  if (href === "/") return pathname === "/";
+  return pathname.startsWith(href);
+};
+---
+
+<header
+  class="sticky top-0 z-50 w-full border-b border-current/20 bg-inherit font-mono text-sm"
+>
+  <div class="max-w-4xl mx-auto h-16 flex items-center justify-between px-4">
+    <nav class="flex items-stretch h-9">
+      {
+        navItems.map((item, index) => {
+          const active = isActive(item.href);
+          return (
+            <a
+              href={item.href}
+              class={`
+          px-3 flex items-center justify-center transition-colors duration-150
+          border border-[#a7a2e7]
+          ${index !== 0 ? "border-l-0" : ""} 
+          ${
+            active
+              ? "bg-[#a7a2e7] text-[#121212] font-ascii text-base font-bold"
+              : "text-current hover:bg-[#a7a2e7] hover:text-[#121212]"
+          }
+        `}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <button
+        aria-label="Idioma"
+        class="btn-retro-icon"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path
+            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+          ></path>
+        </svg>
+      </button>
+
+      <button
+        aria-label="Cambiar tema"
+        class="btn-retro-icon"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="block dark:hidden"
+        >
+          <circle cx="12" cy="12" r="4"></circle>
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+          ></path>
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="hidden dark:block"
+        >
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
