@@ -1,0 +1,29 @@
+node_modules# Dependencies
+node_modules/
+
+# Build outputs (Astro's local production builds)
+dist/
+chunks/
+
+# Astro runtime & cache logs
+.astro/
+
+# Environment variables (Crucial if you ever add API keys or secrets)
+.env
+.env.production
+.env.development
+.env.local
+.env.*.local
+
+# IDEs and text editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
