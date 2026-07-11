@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* Para personalizar tailwind se hace directamente aquí con @theme. Por ejemplo:
+@theme {
+  --color-retro-green: #39ff14;
+  --font-display: "Courier New", monospace;
+}
+  */

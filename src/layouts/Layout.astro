@@ -1,0 +1,19 @@
+---
+// src/layouts/Layout.astro
+import '../styles/global.css'; 
+import CrtFilter from '../components/CrtFilter.astro';
+
+---
+
+<!DOCTYPE html>
+<html lang="es" class="bg-black text-purple-500 font-mono">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Página personal</title>
+  </head>
+  <body>
+    <CrtFilter /> 
+    <main class="p-8">
+      <slot /> </main>
+  </body>
+</html>
