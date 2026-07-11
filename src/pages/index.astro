@@ -1,4 +1,21 @@
 ---
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// src/pages/index.astro
+import Layout from "../layouts/Layout.astro";
 ---
+
+<Layout>
+	<main class="flex flex-col items-center justify-center min-h-screen p-4">
+		<h1 class="text-4xl font-bold mb-4 tracking-wider">
+			Inés Triviño
+		</h1>
+		<p class="text-lg text-purple-400 mb-6 text-center w-2/3">
+			Página en progreso. Usando Astro, Tailwind CSS y Howler JS. Librería de sonidos de Kenney.
+		</p>
+
+		<button
+			class="sfx-button cursor-pointer border border-purple-500 hover:bg-purple-500 hover:text-black transition-colors duration-200 px-6 py-2 rounded font-bold"
+		>
+			Botón de prueba
+		</button>
+	</main>
+</Layout>
