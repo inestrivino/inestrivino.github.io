@@ -38,7 +38,7 @@ export const ui = {
     'home.posts_recientes': 'Recent posts',
     'home.ver_todos': 'See all',
     'home.descripcion':
-      'Software Engineer. Student at the Digital Humanities Masters program at the Universidad Complutense de Madrid. I enjoy designing and implementing complex projects that test the limits of my abilities and teach me new technologies.'
+      'Software Engineer. Student of the Digital Humanities Masters program at the Universidad Complutense de Madrid. I enjoy designing and implementing complex projects that test the limits of my abilities and teach me new technologies.'
   },
 } as const;
 
