@@ -24,29 +24,36 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <title>{title}</title>
-  </head>
 
-  <!-- CHANGE THEME WITHOUT FLICKER SCRIPT -->
-  <script is:inline>
-    const getThemePreference = () => {
+    <!-- CHANGE THEME AND MUTE WITHOUT FLICKER SCRIPT -->
+    <script is:inline>
+      const getThemePreference = () => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        return window.matchMedia("(prefers-color-scheme: light)").matches
+          ? "light"
+          : "dark";
+      };
+
+      const theme = getThemePreference();
+      if (theme === "light") {
+        document.documentElement.classList.add("light");
+      } else {
+        document.documentElement.classList.remove("light");
+      }
+
       if (
         typeof localStorage !== "undefined" &&
-        localStorage.getItem("theme")
+        localStorage.getItem("audio-muted") === "true"
       ) {
-        return localStorage.getItem("theme");
+        document.documentElement.setAttribute("data-muted", "true");
       }
-      return window.matchMedia("(prefers-color-scheme: light)").matches
-        ? "light"
-        : "dark";
-    };
-
-    const theme = getThemePreference();
-    if (theme === "light") {
-      document.documentElement.classList.add("light");
-    } else {
-      document.documentElement.classList.remove("light");
-    }
-  </script>
+    </script></head
+  >
 
   <CrtFilter />
   <body
@@ -64,6 +71,4 @@ const { title } = Astro.props;
   <script>
     import "../utils/audio.js";
   </script>
-
-
 </html>

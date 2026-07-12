@@ -1,5 +1,5 @@
 ---
-import { Moon, Sun, Globe, Volume2, Menu, X } from "@lucide/astro";
+import { Moon, Sun, Globe, Volume2, VolumeX, Menu, X } from "@lucide/astro";
 
 import {
   getLangFromUrl,
@@ -90,10 +90,19 @@ const isActive = (href: string) => url.pathname === translatePath(href);
     <div class="flex items-center gap-2 ml-auto md:ml-0">
       <!-- Sound -->
       <button
+        id="audio-toggle"
         aria-label="Sonido"
         class="btn-retro-icon sfx-button"
-        data-title={t("tooltip.sonido")}><Volume2 /></button
+        data-title={t("tooltip.sonido")}
       >
+        <span id="volume-on" class="hidden">
+          <Volume2 />
+        </span>
+
+        <span id="volume-muted" class="hidden">
+          <VolumeX />
+        </span>
+      </button>
 
       <!-- Language -->
       <div class="relative inline-block text-left" id="lang-dropdown-wrapper">
@@ -158,6 +167,41 @@ const isActive = (href: string) => url.pathname === translatePath(href);
     </div>
   </div>
 </header>
+
+<!-- MUTE BUTTON SCRIPT -->
+<script>
+  const audioButton = document.getElementById("audio-toggle");
+  const volumeOnIcon = document.getElementById("volume-on");
+  const volumeMutedIcon = document.getElementById("volume-muted");
+
+  // function to sync the icons to the state of the volume
+  const updateAudioIcons = () => {
+    const isMuted = document.documentElement.hasAttribute('data-muted');
+    
+    if (isMuted) {
+      volumeOnIcon?.classList.add("hidden");
+      volumeMutedIcon?.classList.remove("hidden");
+    } else {
+      volumeOnIcon?.classList.remove("hidden");
+      volumeMutedIcon?.classList.add("hidden");
+    }
+  };
+  updateAudioIcons();
+
+  // apply mute and update icons when the button is clicked
+  audioButton?.addEventListener("click", () => {
+    const html = document.documentElement;
+    
+    if (html.hasAttribute('data-muted')) {
+      html.removeAttribute('data-muted');
+      localStorage.setItem('audio-muted', 'false');
+    } else {
+      html.setAttribute('data-muted', 'true');
+      localStorage.setItem('audio-muted', 'true');
+    }
+    updateAudioIcons();
+  });
+</script>
 
 <!-- CHANGE THEME SCRIPT -->
 <script>

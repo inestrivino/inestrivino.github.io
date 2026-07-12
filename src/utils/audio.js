@@ -15,8 +15,11 @@ export const soundManager = {
 };
 
 if (typeof window !== 'undefined') {
+  const isMuted = () => document.documentElement.hasAttribute('data-muted');
+
   //click sound effect
   document.addEventListener('click', (event) => {
+    if (isMuted()) return;
     const target = event.target;
     if (target && target.closest('.sfx-button')) {
       soundManager.click.pause();
@@ -27,6 +30,7 @@ if (typeof window !== 'undefined') {
 
   //hover sound effect with flags so the sound doesn't overlap
   document.addEventListener('mouseover', (event) => {
+    if (isMuted()) return;
     const target = event.target;
     if (target && target.closest('.sfx-button')) {
       const button = target.closest('.sfx-button');
@@ -42,7 +46,9 @@ if (typeof window !== 'undefined') {
     }
   });
 
+  //hover sound effect for projects and posts specifically
   document.addEventListener('mouseover', (event) => {
+    if (isMuted()) return;
     const target = event.target;
     if (target && target.closest('.sfx-project')) {
       soundManager.hoverProject.pause();
