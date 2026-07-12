@@ -1,5 +1,5 @@
 ---
-import { Moon, Globe, Volume2, Menu, X } from "@lucide/astro";
+import { Moon, Sun, Globe, Volume2, Menu, X } from "@lucide/astro";
 
 import {
   getLangFromUrl,
@@ -131,12 +131,20 @@ const isActive = (href: string) => url.pathname === translatePath(href);
         </div>
       </div>
 
-      <!-- Theme -->
       <button
-        aria-label="Cambiar tema"
+        id="theme-toggle"
+        aria-label={t("tooltip.tema")}
         class="btn-retro-icon sfx-button"
-        data-title={t("tooltip.tema")}><Moon /></button
+        data-title={t("tooltip.tema")}
       >
+        <span id="sun-icon" class="hidden">
+          <Sun />
+        </span>
+
+        <span id="moon-icon" class="hidden">
+          <Moon />
+        </span>
+      </button>
 
       <!-- Mobile menu -->
       <button
@@ -150,6 +158,37 @@ const isActive = (href: string) => url.pathname === translatePath(href);
     </div>
   </div>
 </header>
+
+<!-- CHANGE THEME SCRIPT -->
+<script>
+  const toggleButton = document.getElementById("theme-toggle");
+  const sunIcon = document.getElementById("sun-icon");
+  const moonIcon = document.getElementById("moon-icon");
+
+  // Function to sync the icons to the theme
+  const updateIcons = () => {
+    const isLight = document.documentElement.classList.contains("light");
+
+    if (isLight) {
+      sunIcon?.classList.remove("hidden");
+      moonIcon?.classList.add("hidden");
+    } else {
+      sunIcon?.classList.add("hidden");
+      moonIcon?.classList.remove("hidden");
+    }
+  };
+  updateIcons();
+
+  // when the button is clicked the html gets light theme and the icon is updated
+  toggleButton?.addEventListener("click", () => {
+    const element = document.documentElement;
+    element.classList.toggle("light");
+
+    const isLight = element.classList.contains("light");
+    localStorage.setItem("theme", isLight ? "light" : "dark");
+    updateIcons();
+  });
+</script>
 
 <!-- MOBILE MENU SCRIPT -->
 <script>

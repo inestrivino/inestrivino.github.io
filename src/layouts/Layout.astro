@@ -25,7 +25,30 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <title>{title}</title>
   </head>
-    <CrtFilter />
+
+  <!-- CHANGE THEME WITHOUT FLICKER SCRIPT -->
+  <script is:inline>
+    const getThemePreference = () => {
+      if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("theme")
+      ) {
+        return localStorage.getItem("theme");
+      }
+      return window.matchMedia("(prefers-color-scheme: light)").matches
+        ? "light"
+        : "dark";
+    };
+
+    const theme = getThemePreference();
+    if (theme === "light") {
+      document.documentElement.classList.add("light");
+    } else {
+      document.documentElement.classList.remove("light");
+    }
+  </script>
+
+  <CrtFilter />
   <body
     class="bg-secondary text-primary font-mono min-h-screen flex flex-col selection:bg-primary selection:text-secondary"
   >
@@ -41,4 +64,6 @@ const { title } = Astro.props;
   <script>
     import "../utils/audio.js";
   </script>
+
+
 </html>

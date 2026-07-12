@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Fonts and typography */
+/* Fonts, themes and typography */
 
 @font-face {
   font-family: 'Sixtyfour';
@@ -10,10 +10,22 @@
   font-display: swap;
 }
 
-@theme {
+:root {
+  --primary-color: #a7a2e7;
+  --secondary-color: #121212;
+  
   --font-ascii: 'Sixtyfour';
-  --color-primary: #a7a2e7;
-  --color-secondary: #121212;
+}
+
+html.light {
+  --primary-color: #121212;
+  --secondary-color: #b9b4fa; 
+}
+
+@theme {
+  --font-ascii: var(--font-ascii);
+  --color-primary: var(--primary-color);
+  --color-secondary: var(--secondary-color);
 }
 
 @utility h1 {
@@ -29,6 +41,7 @@ h1 {
 p{
   font-size: 1.1rem;
 }
+
 
 /* Button styles */
 
@@ -89,6 +102,7 @@ p{
   opacity: 1;
   transform: translateX(-50%) scale(1);
 }
+
 
 /* Personalized dropdown (for language selection) */
 

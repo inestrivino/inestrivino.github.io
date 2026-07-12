@@ -4,6 +4,22 @@
 <div class="crt-overlay pointer-events-none fixed inset-0 z-50"></div>
 
 <style>
+  :root {
+    --crt-scanline-color: rgba(0, 0, 0, 0.25); 
+    --crt-flicker-opacity-min: 0.92;
+    --crt-flicker-bright-max: 1.05;
+    --text-glow: 
+      0 0 4px rgba(167, 162, 231, 0.4),
+      0 0 10px rgba(167, 162, 231, 0.2);
+  }
+
+  :global(html.light) {
+    --crt-scanline-color: rgba(18, 18, 18, 0.06); 
+    --crt-flicker-opacity-min: 0.97;
+    --crt-flicker-bright-max: 1.02;
+    --text-glow: 0 0 2px rgba(18, 18, 18, 0.1);
+  }
+
   .crt-overlay {
     position: fixed;
     inset: 0;
@@ -11,24 +27,21 @@
     pointer-events: none;
     background: linear-gradient(
       rgba(35, 31, 38, 0) 50%, 
-      rgba(0, 0, 0, 0.3) 50%
+      var(--crt-scanline-color) 50%
     );
     background-size: 100% 4px;
-    animation: 
-      flicker 1s infinite, 
+    /* Usamos una animación suavizada unificada */
+    animation: crt-flicker-soft 0.25s infinite; 
   }
 
-  @keyframes flicker-agresivo {
-    0% { opacity: 0.9; filter: brightness(0.9); }
-    30% { opacity: 1; filter: brightness(1.1); }
-    50% { opacity: 0.85; filter: brightness(0.8); }
-    80% { opacity: 0.95; filter: brightness(1.05); }
-    100% { opacity: 0.9; filter: brightness(0.9); }
+  @keyframes crt-flicker-soft {
+    0% { opacity: var(--crt-flicker-opacity-min); filter: brightness(0.96); }
+    50% { opacity: 1; filter: brightness(var(--crt-flicker-bright-max)); }
+    100% { opacity: var(--crt-flicker-opacity-min); filter: brightness(0.98); }
   }
 
   :global(body) {
-    text-shadow: 
-      0 0 6px rgba(167, 162, 231, 0.5),
-      0 0 15px rgba(167, 162, 231, 0.3);
+    text-shadow: var(--text-glow);
+    transition: text-shadow 0.3s ease;
   }
 </style>
