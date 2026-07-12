@@ -1,27 +1,30 @@
 ---
-// Obtains the current route
-const { pathname } = Astro.url;
+import { Moon, Globe, Volume2, Menu, X } from "@lucide/astro";
+
+import {
+  getLangFromUrl,
+  getTargetRef,
+  useTranslations,
+  useLocalizedPath,
+} from "../i18n/utils";
+
+import { languages } from "../i18n/ui";
+
+const url = Astro.url;
+const lang = getLangFromUrl(url);
+const t = useTranslations(url);
+const translatePath = useLocalizedPath(url);
+const getHrefForLang = getTargetRef(url);
 
 const navItems = [
-  { href: "/", label: "inicio" },
-  { href: "/yo", label: "sobre mí" },
-  { href: "/proyectos", label: "proyectos" },
+  { href: "/", label: t("nav.inicio") },
+  { href: "/sobremi", label: t("nav.sobremi") },
+  { href: "/proyectos", label: t("nav.proyectos") },
   { href: "/blog", label: "blog" },
-  { href: "/contacto", label: "contacto" },
   { href: "/cli", label: "CLI" },
 ];
 
-// Function that checks which nav element should be "active"
-const isActive = (href: string) => {
-  if (href === "/") return pathname === "/";
-  return pathname.startsWith(href);
-};
-
-import { Moon } from "@lucide/astro";
-import { Globe } from "@lucide/astro";
-import { Volume2 } from "@lucide/astro";
-import { Menu } from "@lucide/astro";
-import { X } from "@lucide/astro";
+const isActive = (href: string) => url.pathname === translatePath(href);
 ---
 
 <header class="sticky top-0 z-50 w-full bg-inherit font-mono py-3">
@@ -33,7 +36,7 @@ import { X } from "@lucide/astro";
           const active = isActive(item.href);
           return (
             <a
-              href={item.href}
+              href={translatePath(item.href)}
               class={`
                 px-3 flex items-center justify-center duration-150
                 border border-primary sfx-button
@@ -70,7 +73,7 @@ import { X } from "@lucide/astro";
           const active = isActive(item.href);
           return (
             <a
-              href={item.href}
+              href={translatePath(item.href)}
               class={`
                 mobile-menu-link text-3xl font-bold font-ascii tracking-wider uppercase transition-transform active:scale-95
                 ${active ? "underline decoration-2 underline-offset-8 text-secondary" : "opacity-80 hover:opacity-100"}
@@ -83,28 +86,64 @@ import { X } from "@lucide/astro";
       }
     </div>
 
+    <!-- EXTRA BUTTONS: SOUND, LANGUAGE, AND MENU -->
     <div class="flex items-center gap-2">
+      <!-- Sound -->
       <button
         aria-label="Sonido"
         class="btn-retro-icon sfx-button"
-        data-title="Sonido"><Volume2 /></button
+        data-title={t("tooltip.sonido")}><Volume2 /></button
       >
-      <button
-        aria-label="Idioma"
-        class="btn-retro-icon sfx-button"
-        data-title="Idioma"><Globe /></button
-      >
+
+      <!-- Language -->
+      <div class="relative inline-block text-left" id="lang-dropdown-wrapper">
+        <!-- Dropdown menu button -->
+        <button
+          id="lang-dropdown-btn"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-label="Seleccionar idioma"
+          class="btn-retro-icon sfx-button flex items-center gap-1 pr-2"
+          data-title={t("tooltip.idioma")}
+        >
+          <Globe />
+        </button>
+
+        <!-- Dropdown menu items -->
+        <div id="lang-dropdown-menu" class="dropdown-menu hidden" role="menu">
+          <div class="py-1 flex flex-col">
+            {
+              Object.entries(languages).map(([code, label]) => {
+                const isCurrent = lang === code;
+                return (
+                  <a
+                    href={getHrefForLang(code as any)}
+                    class={`dropdown-item ${isCurrent ? "dropdown-item-active" : "dropdown-item-inactive"}`}
+                    role="menuitem"
+                  >
+                    <span>{label}</span>
+                    {isCurrent && <span class="text-xs">●</span>}
+                  </a>
+                );
+              })
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme -->
       <button
         aria-label="Cambiar tema"
         class="btn-retro-icon sfx-button"
-        data-title="Tema"><Moon /></button
+        data-title={t("tooltip.tema")}><Moon /></button
       >
 
+      <!-- Mobile menu -->
       <button
         id="open-menu-btn"
         aria-label="Abrir menú"
         class="btn-retro-icon sfx-button md:hidden"
-        data-title="Menú"
+        data-title={t("tooltip.menu")}
       >
         <Menu />
       </button>
@@ -112,6 +151,7 @@ import { X } from "@lucide/astro";
   </div>
 </header>
 
+<!-- MOBILE MENU SCRIPT -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const openBtn = document.getElementById("open-menu-btn");
@@ -119,21 +159,50 @@ import { X } from "@lucide/astro";
     const mobileMenu = document.getElementById("mobile-menu");
     const menuLinks = document.querySelectorAll(".mobile-menu-link");
 
-    // Function that opens the menu
     openBtn?.addEventListener("click", () => {
       mobileMenu?.classList.remove("translate-x-full");
     });
 
-    // Function that closes the menu
     const closeMenu = () => {
       mobileMenu?.classList.add("translate-x-full");
     };
 
     closeBtn?.addEventListener("click", closeMenu);
 
-    // The menu is automatically closed when a link is clicked
     menuLinks.forEach((link) => {
       link.addEventListener("click", closeMenu);
+    });
+  });
+</script>
+
+<!-- DROPDOWN MENU SCRIPT -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const dropdownBtn = document.getElementById("lang-dropdown-btn");
+    const dropdownMenu = document.getElementById("lang-dropdown-menu");
+    const wrapper = document.getElementById("lang-dropdown-wrapper");
+
+    const toggleDropdown = () => {
+      const isHidden = dropdownMenu?.classList.contains("hidden");
+      if (isHidden) {
+        dropdownMenu?.classList.remove("hidden");
+        dropdownBtn?.setAttribute("aria-expanded", "true");
+      } else {
+        dropdownMenu?.classList.add("hidden");
+        dropdownBtn?.setAttribute("aria-expanded", "false");
+      }
+    };
+
+    dropdownBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleDropdown();
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!wrapper?.contains(event.target as Node)) {
+        dropdownMenu?.classList.add("hidden");
+        dropdownBtn?.setAttribute("aria-expanded", "false");
+      }
     });
   });
 </script>

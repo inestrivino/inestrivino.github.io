@@ -1,10 +1,10 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import PostRow from "../components/PostsRow.astro";
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import PostRow from "../../components/PostsRow.astro";
 
-import { getLangFromUrl, useTranslations, useLocalizedPath } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, useLocalizedPath } from '../../i18n/utils';
 
 const url = Astro.url;
 const t = useTranslations(url);
@@ -27,7 +27,7 @@ const posts = [
 ];
 ---
 
-<Layout title="Inés Triviño | Inicio">
+<Layout title="Inés Triviño | Home">
     <Hero />
 
     <hr class="border-t border-dashed border-primary my-12" />

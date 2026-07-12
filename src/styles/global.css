@@ -53,7 +53,7 @@ p{
 }
 
 
-/* Tooltip personalizado */
+/* Personalized tooltip */
 
 [data-title] {
   position: relative;
@@ -88,4 +88,22 @@ p{
 [data-title]:hover::after {
   opacity: 1;
   transform: translateX(-50%) scale(1);
+}
+
+/* Personalized dropdown (for language selection) */
+
+.dropdown-menu {
+  @apply absolute right-0 mt-2 w-36 bg-secondary border border-primary shadow-lg z-50 font-mono;
+}
+
+.dropdown-item {
+  @apply px-4 py-2 text-sm flex items-center justify-between text-primary hover:bg-primary hover:text-secondary duration-100;
+}
+
+.dropdown-item-active {
+  @apply font-bold pointer-events-none;
+}
+
+.dropdown-item-inactive {
+  @apply opacity-80;
 }

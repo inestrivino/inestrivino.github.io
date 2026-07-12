@@ -1,7 +1,20 @@
 ---
+
 import { FileUser } from "@lucide/astro";
 import { Cat } from "@lucide/astro";
 import { Briefcase } from "@lucide/astro";
+
+import {
+  getLangFromUrl,
+  useTranslations,
+  useLocalizedPath,
+} from "../i18n/utils";
+
+const url = Astro.url;
+const lang = getLangFromUrl(url);
+const t = useTranslations(url);
+const translatePath = useLocalizedPath(url);
+
 ---
 
 <section
@@ -38,13 +51,7 @@ import { Briefcase } from "@lucide/astro";
       <!-- Description text -->
       <div class="space-y-8 leading-relaxed text-left md:text-justify">
         <p>
-          <strong>Ingeniera de Software.</strong><br />
-          Estudiante del Máster de Letras Digitales en la Universidad Complutense
-          de Madrid.
-        </p>
-        <p>
-          Disfruto diseñando e implementando proyectos complejos con los que
-          poner al límite mis capacidades y aprender nuevas tecnologías.
+          {t('home.descripcion')}
         </p>
       </div>
 
@@ -53,7 +60,7 @@ import { Briefcase } from "@lucide/astro";
           href="#"
           class="btn-retro-icon btn-retro-big sfx-button"
           aria-label="Ver Currículum"
-          data-title="VER CV"
+          data-title={t('tooltip.cv')}
         >
           <FileUser class="w-full h-full" stroke-width="1" />
         </a>
