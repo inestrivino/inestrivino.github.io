@@ -27,15 +27,65 @@ h1 {
 }
 
 p{
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 /* Button styles */
 
 .btn-retro-icon {
-  @apply cursor-pointer border border-[#a7a2e7] text-current hover:bg-[#a7a2e7] hover:text-[#121212] transition-colors duration-150 h-9 w-9 p-1.5 flex items-center justify-center;
+  @apply cursor-pointer border border-primary text-current hover:bg-primary hover:text-secondary p-1.5 flex items-center justify-center;
 }
 
 .btn-retro-text {
-  @apply border border-[#a7a2e7] text-current hover:bg-[#a7a2e7] hover:text-[#121212] transition-colors duration-150 px-4 py-1.5 inline-flex items-center justify-center;
+  @apply border border-primary text-current hover:bg-primary hover:text-secondary px-4 py-1.5 inline-flex items-center justify-center;
+}
+
+.btn-retro-big{
+  height: 4rem; 
+  width: 4rem; 
+  padding: 0.9rem;
+}
+
+@media (min-width: 48rem) {
+  .md\:hidden {
+    display: none !important;
+  }
+}
+
+
+/* Tooltip personalizado */
+
+[data-title] {
+  position: relative;
+}
+
+[data-title]::after {
+  content: attr(data-title); 
+  
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  
+  font-family: monospace;
+  font-size: inherit;
+  font-weight: bold;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  
+  color: var(--color-primary);
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-primary);
+  padding: 4px 8px;
+  box-shadow: 0 0 8px rgba(167, 162, 231, 0.4);
+  
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.15s ease-in-out;
+  z-index: 50;
+}
+
+[data-title]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
 }

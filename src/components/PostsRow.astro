@@ -6,7 +6,7 @@ interface Props {
 }
 const { title, date, url } = Astro.props;
 ---
-<a href={url} class="flex justify-between items-center py-2 border-b border-primary transition-colors group">
+<a href={url} class="flex justify-between items-center py-2 border-b border-primary group sfx-project">
   <p class="transition-all hover:font-bold">{title}</p>
   <p class="text-primary">{date}</p>
 </a>

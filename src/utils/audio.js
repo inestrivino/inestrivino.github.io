@@ -1,4 +1,3 @@
-// src/utils/audio.js
 // @ts-ignore
 import { Howl, Howler } from 'howler';
 
@@ -8,7 +7,10 @@ export const soundManager = {
     src: ['/audio/tone1.ogg']
   }),
   hover: new Howl({
-    src: ['/audio/lowRandom.ogg']
+    src: ['/audio/pepSound2.ogg']
+  }),
+  hoverProject: new Howl({
+    src: ['/audio/twoTone2.ogg']
   })
 };
 
@@ -17,6 +19,8 @@ if (typeof window !== 'undefined') {
   document.addEventListener('click', (event) => {
     const target = event.target;
     if (target && target.closest('.sfx-button')) {
+      soundManager.click.pause();
+      soundManager.click.currentTime = 0;
       soundManager.click.play();
     }
   });
@@ -27,12 +31,23 @@ if (typeof window !== 'undefined') {
     if (target && target.closest('.sfx-button')) {
       const button = target.closest('.sfx-button');
       if (button && !button.dataset.hovered) {
+        soundManager.hover.pause();
+        soundManager.hover.currentTime = 0;
         soundManager.hover.play();
         button.dataset.hovered = 'true';
         button.addEventListener('mouseleave', () => {
           delete button.dataset.hovered;
         }, { once: true });
       }
+    }
+  });
+
+  document.addEventListener('mouseover', (event) => {
+    const target = event.target;
+    if (target && target.closest('.sfx-project')) {
+      soundManager.hoverProject.pause();
+      soundManager.hoverProject.currentTime = 0;
+      soundManager.hoverProject.play();
     }
   });
 }
