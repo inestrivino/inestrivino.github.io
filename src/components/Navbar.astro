@@ -4,10 +4,11 @@ const { pathname } = Astro.url;
 
 const navItems = [
   { href: "/", label: "inicio" },
+  { href: "/yo", label: "sobre mí"},
   { href: "/proyectos", label: "proyectos" },
   { href: "/blog", label: "blog" },
   { href: "/contacto", label: "contacto" },
-  { href: "/cli", label: "CLI" },
+  { href: "/cli", label: "CLI" }
 ];
 
 // Function that checks which nav element should be "active"
@@ -18,7 +19,7 @@ const isActive = (href: string) => {
 ---
 
 <header
-  class="sticky top-0 z-50 w-full border-b border-current/20 bg-inherit font-mono text-sm"
+  class="sticky top-0 z-50 w-full bg-inherit font-mono py-3"
 >
   <div class="max-w-4xl mx-auto h-16 flex items-center justify-between px-4">
     <nav class="flex items-stretch h-9">
@@ -30,12 +31,12 @@ const isActive = (href: string) => {
               href={item.href}
               class={`
           px-3 flex items-center justify-center transition-colors duration-150
-          border border-[#a7a2e7]
+          border border-primary
           ${index !== 0 ? "border-l-0" : ""} 
           ${
             active
-              ? "bg-[#a7a2e7] text-[#121212] font-ascii text-base font-bold"
-              : "text-current hover:bg-[#a7a2e7] hover:text-[#121212]"
+              ? "bg-primary text-secondary font-ascii text-base font-bold"
+              : "text-current hover:bg-primary hover:text-secondary"
           }
         `}
             >

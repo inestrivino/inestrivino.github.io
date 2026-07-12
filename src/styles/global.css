@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+/* Fonts and typography */
+
 @font-face {
   font-family: 'Sixtyfour';
   src: url('/fonts/Sixtyfour-Regular-VariableFont_BLED,SCAN.ttf') format('truetype');
@@ -8,16 +10,10 @@
   font-display: swap;
 }
 
-.btn-retro-icon {
-  @apply cursor-pointer border border-[#a7a2e7] text-current hover:bg-[#a7a2e7] hover:text-[#121212] transition-colors duration-150 h-9 w-9 p-1.5 flex items-center justify-center;
-}
-
-.btn-retro-text {
-  @apply border border-[#a7a2e7] text-current hover:bg-[#a7a2e7] hover:text-[#121212] transition-colors duration-150 px-4 py-1.5 text-sm inline-flex items-center justify-center;
-}
-
 @theme {
   --font-ascii: 'Sixtyfour';
+  --color-primary: #a7a2e7;
+  --color-secondary: #121212;
 }
 
 @utility h1 {
@@ -32,4 +28,14 @@ h1 {
 
 p{
   font-size: 1rem;
+}
+
+/* Button styles */
+
+.btn-retro-icon {
+  @apply cursor-pointer border border-[#a7a2e7] text-current hover:bg-[#a7a2e7] hover:text-[#121212] transition-colors duration-150 h-9 w-9 p-1.5 flex items-center justify-center;
+}
+
+.btn-retro-text {
+  @apply border border-[#a7a2e7] text-current hover:bg-[#a7a2e7] hover:text-[#121212] transition-colors duration-150 px-4 py-1.5 inline-flex items-center justify-center;
 }

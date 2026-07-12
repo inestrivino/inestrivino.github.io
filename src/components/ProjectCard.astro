@@ -5,26 +5,26 @@ interface Props {
 }
 const { title, description } = Astro.props;
 ---
-<div class="cursor-pointer border border-[#a7a2e7] flex flex-col group hover:border-[#a7a2e7] transition-colors relative bg-inherit">
+<div class="cursor-pointer border border-primary flex flex-col group hover:border-primary transition-colors relative bg-inherit">
   
-  <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-[#a7a2e7]"></div>
-  <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-[#a7a2e7]"></div>
-  <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-[#a7a2e7]"></div>
-  <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-[#a7a2e7]"></div>
+  <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-primary"></div>
+  <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-primary"></div>
+  <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-primary"></div>
+  <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-primary"></div>
 
-  <div class="bg-[#e2e0ff] aspect-video w-full flex items-center justify-center text-[#121212] font-bold">
+  <div class="bg-primary aspect-video w-full flex items-center justify-center text-secondary font-bold">
     [ preview ]
   </div>
   
-  <div class="p-4 bg-black/20 flex-grow flex justify-between items-start border-t border-[#a7a2e7]">
+  <div class="p-4 bg-secondary flex-grow flex justify-between items-start border-t border-primary">
     <div>
-      <h3 class="font-bold text-white group-hover:text-[#a7a2e7] transition-colors">{title}</h3>
-      <p class="text-xs mt-1 text-[#a7a2e7]/70">{description}</p>
+      <h3 class="font-bold text-white group-hover:text-primary transition-colors">{title}</h3>
+      <p class="text-xs mt-1">{description}</p>
     </div>
     
     <div class="grid grid-cols-4 gap-1">
       {[...Array(8)].map(() => (
-        <div class="w-3 h-3 bg-[#a7a2e7]/40"></div>
+        <div class="w-3 h-3 bg-primary"></div>
       ))}
     </div>
   </div>
