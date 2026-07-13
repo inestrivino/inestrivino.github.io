@@ -5,21 +5,26 @@ interface Props {
   url: string;
 }
 const { title, date, url } = Astro.props;
+const formattedDate = date.toLocaleDateString("es-ES", {
+    year: "2-digit",
+    month: "2-digit",
+    day: "2-digit",
+}).replaceAll('/', '.');
 ---
 
 <a
   href={url}
-  class="flex justify-between items-center py-2 border-b border-primary group sfx-project"
+  class="flex flex-row justify-between items-baseline flex-wrap gap-x-8 gap-y-2 py-3 border-b border-transparent hover:border-primary group transition-all"
 >
-  <p class="transition-all hover:font-bold">{title}</p>
-  <time datetime={date.toISOString()}>
-    {
-      date
-        .toLocaleDateString("es-ES", {
-          year: "2-digit", 
-          month: "2-digit",
-          day: "2-digit",
-        })
-    }
+  <h3
+    class="text-lg font-medium flex-1 min-w-62.5 wrap-break-word group-hover:text-primary"
+  >
+    {title}
+  </h3>
+  <time
+    datetime={date.toISOString()}
+    class="font-bold whitespace-nowrap shrink-0"
+  >
+    {formattedDate}
   </time>
 </a>

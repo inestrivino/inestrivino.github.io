@@ -28,6 +28,9 @@ export const ui = {
     'error.error': 'en la dirección de memoria solicitada',
     'error.inicio': 'Volver al inicio',
     'error.mensaje': 'La ruta que intentas inspeccionar ha sido eliminada o ha cambiado de nombre.',
+
+    'contenido.tabla': 'Tabla de contenidos',
+    'contenido.noSecciones': 'No hay secciones',
   },
   en: {
     'nav.inicio': 'home',
@@ -51,6 +54,9 @@ export const ui = {
     'error.error': 'in the solicited memory location',
     'error.inicio': 'Return to Home',
     'error.mensaje': 'The route you are trying to inspect has been deleted or changed name.',
+
+    'contenido.tabla': 'Contents table',
+    'contenido.noSecciones': 'There are no sections',
   },
 } as const;
 

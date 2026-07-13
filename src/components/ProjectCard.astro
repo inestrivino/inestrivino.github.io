@@ -7,7 +7,7 @@ interface Props {
 
 const { title, description, url } = Astro.props;
 ---
-<div class="cursor-pointer border border-primary flex flex-col group hover:border-primary relative bg-inherit sfx-project transition-transform duration-200 ease-out hover:scale-120 z-0 hover:z-10">
+<a href={url} class="block cursor-pointer border border-primary flex flex-col group hover:border-primary relative bg-inherit sfx-project transition-transform duration-200 ease-out hover:scale-105 z-0 hover:z-10 decoration-none">
 
   <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-primary"></div>
   <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-primary"></div>
@@ -18,10 +18,10 @@ const { title, description, url } = Astro.props;
     [ preview ]
   </div>
   
-  <div class="p-4 bg-secondary flex-grow flex justify-between items-start border-t border-primary">
+  <div class="p-4 bg-secondary grow flex justify-between items-start border-t border-primary">
     <div>
       <h3 class="font-bold group-hover:text-primary">{title}</h3>
-      <p class="mt-1">{description}</p>
+      <p class="mt-1 text-sm">{description}</p>
     </div>
     
     <div class="grid grid-cols-4 gap-1">
@@ -30,4 +30,4 @@ const { title, description, url } = Astro.props;
       ))}
     </div>
   </div>
-</div>
+</a>

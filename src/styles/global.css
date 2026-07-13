@@ -5,7 +5,7 @@
 @font-face {
   font-family: 'Sixtyfour';
   src: url('/fonts/Sixtyfour-Regular-VariableFont_BLED,SCAN.ttf') format('truetype');
-  font-weight: 100 900; 
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
@@ -13,13 +13,13 @@
 :root {
   --primary-color: #a7a2e7;
   --secondary-color: #121212;
-  
+
   --font-ascii: 'Sixtyfour';
 }
 
 html.light {
   --primary-color: #121212;
-  --secondary-color: #b9b4fa; 
+  --secondary-color: #b9b4fa;
 }
 
 @theme {
@@ -38,7 +38,7 @@ h1 {
   text-shadow: 0 0 5px currentColor !important;
 }
 
-p{
+p {
   font-size: 1.1rem;
 }
 
@@ -53,9 +53,9 @@ p{
   @apply border border-primary text-current hover:bg-primary hover:text-secondary px-4 py-1.5 inline-flex items-center justify-center;
 }
 
-.btn-retro-big{
-  height: 4rem; 
-  width: 4rem; 
+.btn-retro-big {
+  height: 4rem;
+  width: 4rem;
   padding: 0.9rem;
 }
 
@@ -73,25 +73,25 @@ p{
 }
 
 [data-title]::after {
-  content: attr(data-title); 
-  
+  content: attr(data-title);
+
   position: absolute;
   bottom: -35px;
   left: 50%;
   transform: translateX(-50%) scale(0.9);
-  
+
   font-family: monospace;
   font-size: inherit;
   font-weight: bold;
   letter-spacing: 1px;
   white-space: nowrap;
-  
+
   color: var(--color-primary);
   background-color: var(--color-secondary);
   border: 1px solid var(--color-primary);
   padding: 4px 8px;
   box-shadow: 0 0 8px rgba(167, 162, 231, 0.4);
-  
+
   opacity: 0;
   pointer-events: none;
   transition: all 0.15s ease-in-out;
@@ -120,4 +120,32 @@ p{
 
 .dropdown-item-inactive {
   @apply opacity-80;
+}
+
+
+/* Styles for markdown rendering */
+
+.markdown-body :global(p) {
+  margin-bottom: 1.5rem;
+}
+
+.markdown-body :global(h2),
+.markdown-body :global(h3) {
+  /* To keep the navbar from making clicked subtitles invisible behind it */
+  scroll-margin-top: 5rem;
+}
+
+/* To separate chapters */
+.markdown-body :global(h2) {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-body :global(h3) {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
 }

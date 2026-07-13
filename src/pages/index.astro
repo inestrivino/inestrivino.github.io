@@ -28,7 +28,7 @@ const featuredProjects = allProjects.filter((project) => project.data.featured);
 const latestPosts = allPosts.slice(0, 4);
 ---
 
-<Layout title="Inés Triviño | Inicio">
+<Layout title="Inés Triviño | Inicio" description="Página portfolio de Inés Triviño" lang="es">
     <Hero />
 
     <hr class="border-t border-dashed border-primary my-12" />
@@ -46,7 +46,7 @@ const latestPosts = allPosts.slice(0, 4);
                         title={pro.data.title}
                         description={pro.data.description}
                         url={translatePath(
-                            `/projects/${pro.id
+                            `${pro.id
                                 .split("/")
                                 .pop()
                                 ?.replace(/\.[^/.]+$/, "")}`,
@@ -80,7 +80,7 @@ const latestPosts = allPosts.slice(0, 4);
                         title={post.data.title}
                         date={post.data.date}
                         url={translatePath(
-                            `/blog/${post.id
+                            `${post.id
                                 .split("/")
                                 .pop()
                                 ?.replace(/\.[^/.]+$/, "")}`,
