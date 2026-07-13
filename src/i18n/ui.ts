@@ -21,7 +21,13 @@ export const ui = {
     'home.posts_recientes': 'Entradas recientes',
     'home.ver_todos': 'Ver todos',
     'home.descripcion':
-      'Ingeniera de Software. Estudiante del Máster de Letras Digitales en la Universidad Complutense de Madrid. Disfruto diseñando e implementando proyectos complejos con los que poner al límite mis capacidades y aprender nuevas tecnologías.'
+      'Ingeniera de Software. Estudiante del Máster de Letras Digitales en la Universidad Complutense de Madrid. Disfruto diseñando e implementando proyectos complejos con los que poner al límite mis capacidades y aprender nuevas tecnologías.',
+
+    'proyectos.titulo': 'Proyectos',
+
+    'error.error': 'en la dirección de memoria solicitada',
+    'error.inicio': 'Volver al inicio',
+    'error.mensaje': 'La ruta que intentas inspeccionar ha sido eliminada o ha cambiado de nombre.',
   },
   en: {
     'nav.inicio': 'home',
@@ -38,7 +44,13 @@ export const ui = {
     'home.posts_recientes': 'Recent posts',
     'home.ver_todos': 'See all',
     'home.descripcion':
-      'Software Engineer. Student of the Digital Humanities Masters program at the Universidad Complutense de Madrid. I enjoy designing and implementing complex projects that test the limits of my abilities and teach me new technologies.'
+      'Software Engineer. Student of the Digital Humanities Masters program at the Universidad Complutense de Madrid. I enjoy designing and implementing complex projects that test the limits of my abilities and teach me new technologies.',
+    
+    'proyectos.titulo': 'Projects',
+
+    'error.error': 'in the solicited memory location',
+    'error.inicio': 'Return to Home',
+    'error.mensaje': 'The route you are trying to inspect has been deleted or changed name.',
   },
 } as const;
 

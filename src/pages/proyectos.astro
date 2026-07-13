@@ -3,6 +3,11 @@ import Layout from "../layouts/Layout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import {Rss} from "@lucide/astro";
 
+import { getLangFromUrl, useTranslations, useLocalizedPath } from '../i18n/utils';
+
+const url = Astro.url;
+const t = useTranslations(url);
+
 const proyectos = [
     { title: "Proyecto Uno", description: "Descripción corta del proyecto." },
     { title: "Proyecto Dos", description: "Descripción corta del proyecto." },
@@ -26,7 +31,7 @@ const proyectos = [
             <h1
                 class="font-ascii text-4xl md:text-5xl uppercase tracking-wider"
             >
-                Proyectos
+                {t('proyectos.titulo')}
             </h1>
             <button type="button" class="btn-retro-icon sfx-button">
                 <Rss />
