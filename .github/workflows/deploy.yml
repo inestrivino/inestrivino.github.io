@@ -4,7 +4,7 @@ on:
   push:
     branches: ["main"]
 
-# Permisos necesarios para el despliegue nativo sin ramas intermedias
+# Permissions for direct deployment
 permissions:
   contents: read
   pages: write
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUILD_PATH: "." # Raíz del proyecto
+  BUILD_PATH: "." # Proyect root
 
 jobs:
   build:
