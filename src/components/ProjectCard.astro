@@ -2,8 +2,10 @@
 interface Props {
   title: string;
   description: string;
+  url: string;
 }
-const { title, description } = Astro.props;
+
+const { title, description, url } = Astro.props;
 ---
 <div class="cursor-pointer border border-primary flex flex-col group hover:border-primary relative bg-inherit sfx-project transition-transform duration-200 ease-out hover:scale-120 z-0 hover:z-10">
 

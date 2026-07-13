@@ -1,0 +1,25 @@
+---
+interface Props {
+  title: string;
+  date: Date;
+  url: string;
+}
+const { title, date, url } = Astro.props;
+---
+
+<a
+  href={url}
+  class="flex justify-between items-center py-2 border-b border-primary group sfx-project"
+>
+  <p class="transition-all hover:font-bold">{title}</p>
+  <time datetime={date.toISOString()}>
+    {
+      date
+        .toLocaleDateString("es-ES", {
+          year: "2-digit", 
+          month: "2-digit",
+          day: "2-digit",
+        })
+    }
+  </time>
+</a>

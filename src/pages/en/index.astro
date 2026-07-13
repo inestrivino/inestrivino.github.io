@@ -2,36 +2,39 @@
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/Hero.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
-import PostRow from "../../components/PostsRow.astro";
+import PostRow from "../../components/PostRow.astro";
 
-import { getLangFromUrl, useTranslations, useLocalizedPath } from '../../i18n/utils';
+import {
+    getLangFromUrl,
+    useTranslations,
+    useLocalizedPath,
+    getLocalizedBlog,
+    getLocalizedProjects,
+} from "../../i18n/utils";
 
 const url = Astro.url;
 const t = useTranslations(url);
 const translatePath = useLocalizedPath(url);
 
-// Test data
-// TO DO: LOAD THEM FROM AVAILABLE LIST OF MARKDOWN PROJECTS AND POSTS
-const proyectos = [
-    { title: "Título 1", description: "Descripción corta del proyecto" },
-    { title: "Título 2", description: "Descripción corta del proyecto" },
-    { title: "Título 3", description: "Descripción corta del proyecto" },
-    { title: "Título 4", description: "Descripción corta del proyecto" },
-];
+// We obtain the current active language
+const currentLang = getLangFromUrl(url);
 
-const posts = [
-    { title: "Post de ejemplo", date: "11 Jul. 2026", url: "/blog/post-1" },
-    { title: "Post de ejemplo", date: "11 Jul. 2026", url: "/blog/post-2" },
-    { title: "Post de ejemplo", date: "11 Jul. 2026", url: "/blog/post-3" },
-    { title: "Post de ejemplo", date: "11 Jul. 2026", url: "/blog/post-4" },
-];
+// We get the collections corresponding to that language
+const allProjects = await getLocalizedProjects(currentLang);
+const allPosts = await getLocalizedBlog(currentLang);
+
+// We apply layout rules (projects must be featured, posts must be 4 most recent)
+const featuredProjects = allProjects.filter((project) => project.data.featured);
+const latestPosts = allPosts.slice(0, 4);
+
 ---
 
 <Layout title="Inés Triviño | Home">
-    <Hero />
+<Hero />
 
     <hr class="border-t border-dashed border-primary my-12" />
 
+    <!-- Projects Section -->
     <section class="mb-12 max-w-4xl mx-auto">
         <h2 class="text-2xl font-bold text-center mb-8 tracking-wide">
             {t("home.proyectos_recientes")}
@@ -39,10 +42,16 @@ const posts = [
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {
-                proyectos.map((pro) => (
+                featuredProjects.map((pro) => (
                     <ProjectCard
-                        title={pro.title}
-                        description={pro.description}
+                        title={pro.data.title}
+                        description={pro.data.description}
+                        url={translatePath(
+                            `/projects/${pro.id
+                                .split("/")
+                                .pop()
+                                ?.replace(/\.[^/.]+$/, "")}`,
+                        )}
                     />
                 ))
             }
@@ -67,11 +76,16 @@ const posts = [
 
         <div class="max-w-xl mx-auto flex flex-col gap-2">
             {
-                posts.map((post) => (
+                latestPosts.map((post) => (
                     <PostRow
-                        title={post.title}
-                        date={post.date}
-                        url={translatePath(post.url)}
+                        title={post.data.title}
+                        date={post.data.date}
+                        url={translatePath(
+                            `/blog/${post.id
+                                .split("/")
+                                .pop()
+                                ?.replace(/\.[^/.]+$/, "")}`,
+                        )}
                     />
                 ))
             }

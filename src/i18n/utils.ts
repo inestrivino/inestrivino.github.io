@@ -1,5 +1,6 @@
 import { ui, defaultLang, routes } from './ui';
 type Locale = keyof typeof ui;
+import { getCollection } from 'astro:content';
 
 // Extracts the current language from the URL
 export function getLangFromUrl(url: URL): Locale {
@@ -71,4 +72,34 @@ export function getTargetRef(url: URL) {
     // Use our enhanced translatePath, forcing it to calculate for the selected target language
     return translatePath(pathWithoutLang || '/', targetLang);
   };
+}
+
+// Helper to filter content by language based on its folder structure
+export async function getLocalizedBlog(lang: Locale = defaultLang) {
+  const allPosts = await getCollection('blog');
+  
+  return allPosts
+    .filter((post) => {
+      // If language is the default language, it shouldn't be inside any language subfolder
+      if (lang === defaultLang) {
+        return !post.id.includes('/');
+      }
+      // For other languages, the ID must start with the language code
+      return post.id.startsWith(`${lang}/`);
+    })
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()); // Newest first
+}
+
+export async function getLocalizedProjects(lang: Locale = defaultLang) {
+  const allProjects = await getCollection('projects');
+  
+  return allProjects.filter((project) => {
+    // If language is the default language, it shouldn't be inside any language subfolder
+    if (lang === defaultLang) {
+      return !project.id.includes('/');
+    }
+    // For other languages, the ID must start with the language code
+    return project.id.startsWith(`${lang}/`);
+  })
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()); // Newest first;
 }
