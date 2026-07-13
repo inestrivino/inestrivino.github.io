@@ -1,0 +1,67 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PostRow from "../PostRow.astro";
+import { Rss } from "@lucide/astro";
+
+import {
+    getLangFromUrl,
+    useTranslations,
+    useLocalizedPath,
+    getLocalizedBlog,
+} from "../../i18n/utils";
+
+const url = Astro.url;
+const t = useTranslations(url);
+const translatePath = useLocalizedPath(url);
+
+// We obtain the current active language
+const currentLang = getLangFromUrl(url);
+
+// We get the collections corresponding to that language
+const allPosts = await getLocalizedBlog(currentLang);
+
+// We obtain the rss feed path based on the current language
+const rssFeedPath = translatePath("blog.xml");
+---
+
+<Layout
+    title={t("blog.title")}
+    description={t("blog.description")}
+    lang={currentLang}
+>
+    <section
+        class="w-full max-w-5xl mx-auto p-4 md:p-8 min-h-[calc(100vh-80px)] flex flex-col justify-start"
+    >
+        <div class="flex justify-between items-end mb-10 mt-4">
+            <h1
+                class="font-ascii text-4xl md:text-5xl uppercase tracking-wider"
+            >
+                Blog
+            </h1>
+            <a
+                href={rssFeedPath}
+                class="btn-retro-icon sfx-button inline-flex items-center justify-center"
+                aria-label="RSS Feed"
+                target="_blank"
+            >
+                <Rss />
+            </a>
+        </div>
+
+        <div class="max-w-5xl mx-auto flex flex-col gap-5 w-full">
+            {
+                allPosts.length > 0 ? (
+                    allPosts.map((post) => (
+                        <PostRow
+                            title={post.data.title}
+                            date={post.data.date}
+                            url={translatePath(`/${post.id}`)}
+                        />
+                    ))
+                ) : (
+                    <p class="text-base py-4">{t("contenido.noContenido")}</p>
+                )
+            }
+        </div>
+    </section>
+</Layout>

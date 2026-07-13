@@ -1,0 +1,119 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SkillCategory from "../SkillCategory.astro";
+import SkillTag from "../SkillTag.astro";
+
+import {
+    getLangFromUrl,
+    useTranslations,
+    useLocalizedPath,
+} from "../../i18n/utils";
+
+const url = Astro.url;
+const currentLang = getLangFromUrl(url);
+const t = useTranslations(url);
+const translatePath = useLocalizedPath(url);
+---
+
+<Layout
+    title={t("about.title")}
+    description={t("about.description")}
+    lang={currentLang}
+>
+    <div class="px-6 py-12 md:py-20 space-y-16">
+        <section
+            class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center"
+        >
+            <div class="space-y-6">
+                <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
+                    {t("about.titulo")}
+                </h1>
+                <div class="space-y-4 text-base md:text-lg leading-relaxed">
+                    <p>
+                        {t('about.parrafo1')}
+                    </p>
+                    <p>
+                       {t('about.parrafo2')}
+                    </p>
+                    <p>
+                        {t('about.parrafo3')}
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="flex justify-center md:justify-end order-first md:order-last"
+            >
+                <img
+                    src="/img/eyes.png"
+                    alt={t("art.alt")}
+                    class="w-full h-auto max-h-100 object-contain block"
+                    loading="lazy"
+                    decoding="async"
+                />
+            </div>
+        </section>
+
+        <hr class="border-t border-dashed border-primary my-12" />
+
+        <section class="max-w-6xl mx-auto space-y-8">
+            <div class="space-y-2">
+                <h2 class="text-2xl md:text-3xl font-semibold">
+                    {t('about.technologies')}
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <SkillCategory title="Web">
+                    <SkillTag name="HTML5 / CSS3" />
+                    <SkillTag name="Spring Boot" />
+                    <SkillTag name="Node.js" />
+                    <SkillTag name="Express.js" />
+                    <SkillTag name="Astro" />
+                    <SkillTag name="Tailwind CSS" />
+                    <SkillTag name="Bootstrap" />
+                    <SkillTag name="JavaScript" />
+                    <SkillTag name="TypeScript" />
+                    <SkillTag name="React" />
+                </SkillCategory>
+
+                <SkillCategory title="Bases de Datos">
+                    <SkillTag name="Hibernate / JPA" />
+                    <SkillTag name="MySQL" />
+                    <SkillTag name="MongoDB" />
+                    <SkillTag name="Redis" />
+                </SkillCategory>
+
+                <SkillCategory title="DevOps">
+                    <SkillTag name="Git & GitHub" />
+                    <SkillTag name="Docker & Docker Compose" />
+                    <SkillTag name="CI/CD (GitHub Actions)" />
+                </SkillCategory>
+
+                <SkillCategory title="Otros">
+                    <SkillTag name="Java" />
+                    <SkillTag name="C" />
+                    <SkillTag name="C++" />
+                    <SkillTag name="Linux / Bash" />
+                </SkillCategory>
+
+                <SkillCategory title="Metodologías & Calidad">
+                    <SkillTag name="Integration tests (Vitest)" />
+                    <SkillTag name="Unit tests (JUnit)" />
+                    <SkillTag name="External tests (Karate)" />
+                    <SkillTag name="Agile / Scrum" />
+                    <SkillTag name="SRS" />
+                </SkillCategory>
+
+                <SkillCategory
+                    title="Idiomas"
+                    class="md:col-span-2 lg:col-span-3"
+                >
+                    <SkillTag name="Español" detail="Nativo" />
+                    <SkillTag name="English" detail="C2" />
+                    <SkillTag name="Français" detail="B2" />
+                </SkillCategory>
+            </div>
+        </section>
+    </div>
+</Layout>
