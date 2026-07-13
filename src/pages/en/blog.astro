@@ -1,13 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import ProjectCard from "../../components/ProjectCard.astro";
+import PostRow from "../../components/PostRow.astro";
 import { Rss } from "@lucide/astro";
 
 import {
     getLangFromUrl,
     useTranslations,
     useLocalizedPath,
-    getLocalizedProjects,
+    getLocalizedBlog,
 } from "../../i18n/utils";
 
 const url = Astro.url;
@@ -18,14 +18,10 @@ const translatePath = useLocalizedPath(url);
 const currentLang = getLangFromUrl(url);
 
 // We get the collections corresponding to that language
-const allProjects = await getLocalizedProjects(currentLang);
+const allPosts = await getLocalizedBlog(currentLang);
 ---
 
-<Layout
-    title={t('proyectos.title')}
-    description={t('proyectos.description')}
-    lang={currentLang}
->
+<Layout title={t('blog.title')} description={t('blog.description')} lang={currentLang}>
     <section
         class="w-full max-w-5xl mx-auto p-4 md:p-8 min-h-[calc(100vh-80px)] flex flex-col justify-start"
     >
@@ -33,30 +29,27 @@ const allProjects = await getLocalizedProjects(currentLang);
             <h1
                 class="font-ascii text-4xl md:text-5xl uppercase tracking-wider"
             >
-                {t("proyectos.titulo")}
+                Blog
             </h1>
             <button type="button" class="btn-retro-icon sfx-button">
                 <Rss />
             </button>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="max-w-5xl mx-auto flex flex-col gap-5 w-full">
             {
-                allProjects.length > 0 ? (
-                    allProjects.map((pro) => (
-                        <ProjectCard
-                            title={pro.data.title}
-                            description={pro.data.description}
-                            url={translatePath(
-                                `${pro.id
-                                    .split("/")
-                                    .pop()
-                                    ?.replace(/\.[^/.]+$/, "")}`,
-                            )}
+                allPosts.length > 0 ? (
+                    allPosts.map((post) => (
+                        <PostRow
+                            title={post.data.title}
+                            date={post.data.date}
+                            url={translatePath(`/${post.id}`)}
                         />
                     ))
                 ) : (
-                    <p class="text-base py-4">{t("contenido.noContenido")}</p>
+                    <p class="text-base py-4">
+                        {t('contenido.noContenido')}
+                    </p>
                 )
             }
         </div>

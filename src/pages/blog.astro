@@ -21,11 +21,7 @@ const currentLang = getLangFromUrl(url);
 const allPosts = await getLocalizedBlog(currentLang);
 ---
 
-<Layout
-    title="Inés Triviño - Proyectos"
-    description="Proyectos creados por Inés Triviño"
-    lang="es"
->
+<Layout title={t('blog.title')} description={t('blog.description')} lang={currentLang}>
     <section
         class="w-full max-w-5xl mx-auto p-4 md:p-8 min-h-[calc(100vh-80px)] flex flex-col justify-start"
     >
@@ -40,20 +36,21 @@ const allPosts = await getLocalizedBlog(currentLang);
             </button>
         </div>
 
-        <div class="max-w-5xl mx-auto flex flex-col gap-5">
+        <div class="max-w-5xl mx-auto flex flex-col gap-5 w-full">
             {
-                allPosts.map((post) => (
-                    <PostRow
-                        title={post.data.title}
-                        date={post.data.date}
-                        url={translatePath(
-                            `${post.id
-                                .split("/")
-                                .pop()
-                                ?.replace(/\.[^/.]+$/, "")}`,
-                        )}
-                    />
-                ))
+                allPosts.length > 0 ? (
+                    allPosts.map((post) => (
+                        <PostRow
+                            title={post.data.title}
+                            date={post.data.date}
+                            url={translatePath(`/${post.id}`)}
+                        />
+                    ))
+                ) : (
+                    <p class="text-base py-4">
+                        {t('contenido.noContenido')}
+                    </p>
+                )
             }
         </div>
     </section>

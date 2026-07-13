@@ -26,11 +26,10 @@ const allPosts = await getLocalizedBlog(currentLang);
 // We apply layout rules (projects must be featured, posts must be 4 most recent)
 const featuredProjects = allProjects.filter((project) => project.data.featured);
 const latestPosts = allPosts.slice(0, 4);
-
 ---
 
-<Layout title="Inés Triviño | Home" description="Inés Triviño's portfolio website" lang="en">
-<Hero />
+<Layout title={t('home.title')} description={t('home.description')} lang={currentLang}>
+    <Hero />
 
     <hr class="border-t border-dashed border-primary my-12" />
 
@@ -42,18 +41,22 @@ const latestPosts = allPosts.slice(0, 4);
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {
-                featuredProjects.map((pro) => (
-                    <ProjectCard
-                        title={pro.data.title}
-                        description={pro.data.description}
-                        url={translatePath(
-                            `${pro.id
-                                .split("/")
-                                .pop()
-                                ?.replace(/\.[^/.]+$/, "")}`,
-                        )}
-                    />
-                ))
+                featuredProjects.length > 0 ? (
+                    featuredProjects.map((pro) => (
+                        <ProjectCard
+                            title={pro.data.title}
+                            description={pro.data.description}
+                            url={translatePath(
+                                `${pro.id
+                                    .split("/")
+                                    .pop()
+                                    ?.replace(/\.[^/.]+$/, "")}`,
+                            )}
+                        />
+                    ))
+                ) : (
+                    <p class="text-base py-4">{t("contenido.noContenido")}</p>
+                )
             }
         </div>
 
@@ -74,20 +77,21 @@ const latestPosts = allPosts.slice(0, 4);
             {t("home.posts_recientes")}
         </h2>
 
-        <div class="max-w-xl mx-auto flex flex-col gap-2">
+        <div class="max-w-5xl mx-auto flex flex-col gap-5 w-full">
             {
-                latestPosts.map((post) => (
-                    <PostRow
-                        title={post.data.title}
-                        date={post.data.date}
-                        url={translatePath(
-                            `${post.id
-                                .split("/")
-                                .pop()
-                                ?.replace(/\.[^/.]+$/, "")}`,
-                        )}
-                    />
-                ))
+                latestPosts.length > 0 ? (
+                    latestPosts.map((post) => (
+                        <PostRow
+                            title={post.data.title}
+                            date={post.data.date}
+                            url={translatePath(`/${post.id}`)}
+                        />
+                    ))
+                ) : (
+                    <p class="text-base py-4">
+                        {t('contenido.noContenido')}
+                    </p>
+                )
             }
         </div>
 
