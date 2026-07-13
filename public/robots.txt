@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+
+Sitemap: https://inestrivino.github.io/sitemap-index.xml

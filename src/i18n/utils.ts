@@ -11,6 +11,10 @@ export function getLangFromUrl(url: URL): Locale {
   return defaultLang;
 }
 
+export function getRssLang(lang: Locale = defaultLang): string {
+  return lang === 'en' ? 'en-us' : 'es-es';
+}
+
 // Translates text keys based on URL
 export function useTranslations(url: URL) {
   const lang = getLangFromUrl(url);
@@ -31,7 +35,7 @@ function getRouteTranslation(cleanPath: string, currentLang: Locale, targetLang:
   if (routes[targetLang] && routeKey in routes[targetLang]) {
     return routes[targetLang][routeKey as keyof typeof routes[typeof targetLang]];
   }
-  
+
   return routeKey;
 }
 
@@ -42,7 +46,7 @@ export function useLocalizedPath(url: URL) {
   return function translatePath(path: string, forceTargetLang?: Locale) {
     const targetLang = forceTargetLang || currentLang;
     const cleanPath = path.replace(/^\/|\/$/g, '');
-    
+
     // Translate the path segment dynamically
     const targetPath = getRouteTranslation(cleanPath, currentLang, targetLang);
 
@@ -63,10 +67,10 @@ export function getTargetRef(url: URL) {
     if (targetLang === currentLang) return '#';
 
     const cleanPath = url.pathname.replace(/^\/|\/$/g, '');
-    
+
     // If we are currently in a sub-language, drop the language prefix code from the segment lookup
-    const pathWithoutLang = currentLang !== defaultLang 
-      ? cleanPath.replace(new RegExp(`^${currentLang}(\/|$)`), '') 
+    const pathWithoutLang = currentLang !== defaultLang
+      ? cleanPath.replace(new RegExp(`^${currentLang}(\/|$)`), '')
       : cleanPath;
 
     // Use our enhanced translatePath, forcing it to calculate for the selected target language
@@ -77,7 +81,7 @@ export function getTargetRef(url: URL) {
 // Helper to filter content by language based on its folder structure
 export async function getLocalizedBlog(lang: Locale = defaultLang) {
   const allPosts = await getCollection('blog');
-  
+
   return allPosts
     .filter((post) => {
       // If language is the default language, it shouldn't be inside any language subfolder
@@ -92,7 +96,7 @@ export async function getLocalizedBlog(lang: Locale = defaultLang) {
 
 export async function getLocalizedProjects(lang: Locale = defaultLang) {
   const allProjects = await getCollection('projects');
-  
+
   return allProjects.filter((project) => {
     // If language is the default language, it shouldn't be inside any language subfolder
     if (lang === defaultLang) {
@@ -101,5 +105,5 @@ export async function getLocalizedProjects(lang: Locale = defaultLang) {
     // For other languages, the ID must start with the language code
     return project.id.startsWith(`${lang}/`);
   })
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()); // Newest first;
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()); // Newest first;
 }

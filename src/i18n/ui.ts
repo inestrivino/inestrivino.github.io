@@ -54,6 +54,11 @@ export const ui = {
       'En cada diseño e implementación priorizo las arquitecturas limpias, la mantenibilidad y la calidad del código. Ante cualquier reto técnico, investigo a fondo y exploro diferentes metodologías para dar con la solución óptima, asegurándome siempre de plasmar mi línea de pensamiento en una documentación clara y detallada.',
     'about.parrafo3':
       'Cuando me alejo del ordenador, me encontrarás haciendo deporte, leyendo o disfrutando de algún videojuego.',
+
+    'rss.blog.title': 'Blog de Inés',
+    'rss.blog.description': 'Pensamientos, lecturas, cosas que aprendo, y otros temas relevantes',
+    'rss.projects.title': 'Projectos de Inés',
+    'rss.projects.description': 'Posts sobre mis proyectos',
   },
   en: {
     'nav.inicio': 'home',
@@ -83,6 +88,8 @@ export const ui = {
     'blog.title': 'Inés Triviño - Blog',
     'blog.description': 'Posts from my blog',
 
+    'error.title': '404 - Route not found',
+    'error.description': '404 error',
     'error.error': 'in the solicited memory location',
     'error.inicio': 'Return to Home',
     'error.mensaje': 'The route you are trying to inspect has been deleted or changed name.',
@@ -99,7 +106,12 @@ export const ui = {
 
     'about.parrafo2': "In every design and implementation, I prioritize clean architecture, maintainability, and code quality. Faced with any technical challenge, I dive deep into research and explore different methodologies to find the optimal solution, always making sure to reflect my line of thought in clear and detailed documentation.",
 
-    'about.parrafo3': "When I step away from the computer, you'll find me working out, reading, or playing video games."
+    'about.parrafo3': "When I step away from the computer, you'll find me working out, reading, or playing video games.",
+
+    'rss.blog.title': 'Inés Blog',
+    'rss.blog.description': 'Posts on projects, learning, reading or other relevant topics',
+    'rss.projects.title': 'Projects by Inés',
+    'rss.projects.description': 'Posts about projects',
   },
 } as const;
 

@@ -4,6 +4,8 @@ import { defineConfig } from 'astro/config';
 // @ts-ignore
 import tailwindcss from '@tailwindcss/vite';
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://inestrivino.github.io',
@@ -23,5 +25,7 @@ export default defineConfig({
       prefixDefaultLocale: false, 
       redirectToDefaultLocale: false
     }
-  }
+  },
+
+  integrations: [sitemap()]
 });

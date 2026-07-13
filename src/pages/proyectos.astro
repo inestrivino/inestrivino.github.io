@@ -19,11 +19,14 @@ const currentLang = getLangFromUrl(url);
 
 // We get the collections corresponding to that language
 const allProjects = await getLocalizedProjects(currentLang);
+
+// We obtain the rss feed path based on the current language
+const rssFeedPath = translatePath("projects.xml");
 ---
 
 <Layout
-    title={t('proyectos.title')}
-    description={t('proyectos.description')}
+    title={t("proyectos.title")}
+    description={t("proyectos.description")}
     lang={currentLang}
 >
     <section
@@ -35,9 +38,14 @@ const allProjects = await getLocalizedProjects(currentLang);
             >
                 {t("proyectos.titulo")}
             </h1>
-            <button type="button" class="btn-retro-icon sfx-button">
+            <a
+                href={rssFeedPath}
+                class="btn-retro-icon sfx-button inline-flex items-center justify-center"
+                aria-label="RSS Feed"
+                target="_blank"
+            >
                 <Rss />
-            </button>
+            </a>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

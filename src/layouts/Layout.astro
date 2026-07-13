@@ -10,12 +10,20 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
 interface Props {
-  title: string,
-  description: string,
-  lang: string,
+  title: string;
+  description: string;
+  lang: string;
 }
 
-const { title , description, lang} = Astro.props;
+const { title, description, lang } = Astro.props;
+
+import { useLocalizedPath } from "../i18n/utils";
+
+const url = Astro.url;
+const translatePath = useLocalizedPath(url);
+
+const rssBlogPath = translatePath("blog.xml");
+const rssProjectsPath = translatePath("projects.xml");
 ---
 
 <!doctype html>
@@ -26,6 +34,18 @@ const { title , description, lang} = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <title>{title}</title>
+
+    <!-- RSS feeds for self-discovery -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href={rssBlogPath}
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href={rssProjectsPath}
+    />
 
     <!-- CHANGE THEME AND MUTE WITHOUT FLICKER SCRIPT -->
     <script is:inline>
@@ -63,7 +83,7 @@ const { title , description, lang} = Astro.props;
   >
     <Navbar />
 
-    <main class="flex-grow w-full mx-auto px-4 pt-8 pb-12">
+    <main class="grow w-full mx-auto px-4 pt-8 pb-12">
       <slot />
     </main>
 
