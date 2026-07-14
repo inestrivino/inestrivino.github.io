@@ -1,4 +1,4 @@
-node_modules# Dependencies
+#Dependencies
 node_modules/
 
 # Build outputs (Astro's local production builds)

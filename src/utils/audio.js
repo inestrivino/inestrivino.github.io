@@ -1,7 +1,7 @@
 // @ts-ignore
 import { Howl, Howler } from 'howler';
 
-// 1. Centralización de los efectos de sonido de la web
+// Centralización de los efectos de sonido de la web
 export const soundManager = {
   click: new Howl({
     src: ['/audio/tone1.ogg']
