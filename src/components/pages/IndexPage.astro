@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Hero from "../Hero.astro";
 import ProjectCard from "../ProjectCard.astro";
 import PostRow from "../PostRow.astro";
+import Skills from "../Skills.astro";
 
 import {
     getLangFromUrl,
@@ -28,8 +29,22 @@ const featuredProjects = allProjects.filter((project) => project.data.featured);
 const latestPosts = allPosts.slice(0, 4);
 ---
 
-<Layout title={t('home.title')} description={t('home.description')} lang={currentLang}>
+<Layout
+    title={t("home.title")}
+    description={t("home.description")}
+    lang={currentLang}
+>
     <Hero />
+
+    <hr class="border-t border-dashed border-primary my-12" />
+
+    <!-- Skills section -->
+    <section class="mb-12, max-w-6xl mx-auto">
+        <h2 class="text-2xl font-bold text-center mb-8 tracking-wide">
+            {t("home.habilidades")}
+        </h2>
+        <Skills />
+    </section>
 
     <hr class="border-t border-dashed border-primary my-12" />
 
@@ -88,9 +103,7 @@ const latestPosts = allPosts.slice(0, 4);
                         />
                     ))
                 ) : (
-                    <p class="text-base py-4">
-                        {t('contenido.noContenido')}
-                    </p>
+                    <p class="text-base py-4">{t("contenido.noContenido")}</p>
                 )
             }
         </div>

@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import PostRow from "../PostRow.astro";
-import { Rss } from "@lucide/astro";
+import RSSButton from "../RSSButton.astro";
 
 import {
     getLangFromUrl,
@@ -38,14 +38,7 @@ const rssFeedPath = translatePath("blog.xml");
             >
                 Blog
             </h1>
-            <a
-                href={rssFeedPath}
-                class="btn-retro-icon sfx-button inline-flex items-center justify-center"
-                aria-label="RSS Feed"
-                target="_blank"
-            >
-                <Rss />
-            </a>
+            <RSSButton href={rssFeedPath} />
         </div>
 
         <div class="max-w-5xl mx-auto flex flex-col gap-5 w-full">

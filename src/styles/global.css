@@ -38,6 +38,12 @@ h1 {
   text-shadow: 0 0 5px currentColor !important;
 }
 
+h2 {
+  font-family: var(--font-ascii), monospace !important;
+  text-shadow: 0 0 5px currentColor !important;
+  font-size: 1.5rem;
+}
+
 p {
   font-size: 1.1rem;
 }

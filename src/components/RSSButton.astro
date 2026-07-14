@@ -1,0 +1,22 @@
+---
+import { Rss } from "@lucide/astro";
+
+interface Props {
+  href: string;
+}
+
+const { 
+  href
+} = Astro.props;
+---
+
+<a
+  href={href}
+  class="btn-retro-icon sfx-button inline-flex items-center justify-center"
+  aria-label="RSS"
+  target="_blank"
+  rel="noopener noreferrer" 
+  data-title="RSS"
+>
+  <Rss />
+</a>

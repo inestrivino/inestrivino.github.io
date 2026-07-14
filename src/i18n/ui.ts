@@ -21,6 +21,7 @@ export const ui = {
 
     'home.title': 'Inés Triviño | Inicio',
     'home.description': "Página portfolio de Inés Triviño",
+    'home.habilidades': "Habilidades",
     'home.proyectos_recientes': 'Proyectos recientes',
     'home.posts_recientes': 'Entradas recientes',
     'home.ver_todos': 'Ver todos',
@@ -49,7 +50,7 @@ export const ui = {
     'about.titulo': 'Sobre mí',
     'about.technologies': 'Tecnologías, herramientas e idiomas',
     'about.parrafo1':
-      '¡Hola! Soy Inés, ingeniera de software con un perfil versátil que complementa mi conocimiento técnico con mi formación actual en Letras Digitales(UCM).Mi objetivo es fusionar ambas disciplinas para desarrollar software robusto y de calidad aplicado al ámbito cultural y la investigación.',
+      '¡Hola! Soy Inés, ingeniera de software con un perfil versátil que complementa mi conocimiento técnico con mi formación actual en Letras Digitales (UCM).Mi objetivo es fusionar ambas disciplinas para desarrollar software robusto y de calidad aplicado al ámbito cultural y la investigación.',
     'about.parrafo2':
       'En cada diseño e implementación priorizo las arquitecturas limpias, la mantenibilidad y la calidad del código. Ante cualquier reto técnico, investigo a fondo y exploro diferentes metodologías para dar con la solución óptima, asegurándome siempre de plasmar mi línea de pensamiento en una documentación clara y detallada.',
     'about.parrafo3':
@@ -75,6 +76,7 @@ export const ui = {
 
     'home.title': 'Inés Triviño | Home',
     'home.description': "Portfolio website for Inés Triviño",
+    'home.habilidades': "Skills",
     'home.proyectos_recientes': 'Recent projects',
     'home.posts_recientes': 'Recent posts',
     'home.ver_todos': 'See all',

@@ -30,22 +30,29 @@ const rssProjectsPath = translatePath("projects.xml");
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <title>{title}</title>
 
+    <!-- SEO AND METADATA -->
+    <meta name="description" content={description} />
+    <meta name="author" content="Inés Triviño" />
+    <link rel="canonical" href="inestrivino.github.io" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- UI and Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="inestrivino.github.io"/>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/favicon.png" />
+
     <!-- RSS feeds for self-discovery -->
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      href={rssBlogPath}
-    />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      href={rssProjectsPath}
-    />
+    <link rel="alternate" type="application/rss+xml" href={rssBlogPath} />
+    <link rel="alternate" type="application/rss+xml" href={rssProjectsPath} />
 
     <!-- CHANGE THEME AND MUTE WITHOUT FLICKER SCRIPT -->
     <script is:inline>

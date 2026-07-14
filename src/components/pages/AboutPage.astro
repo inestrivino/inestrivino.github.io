@@ -1,7 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import SkillCategory from "../SkillCategory.astro";
-import SkillTag from "../SkillTag.astro";
+import Skills from "../Skills.astro";
 
 import {
     getLangFromUrl,
@@ -42,7 +41,7 @@ const translatePath = useLocalizedPath(url);
             </div>
 
             <div
-                class="flex justify-center md:justify-end order-first md:order-last"
+                class="hidden md:flex border-t md:border-t-0 md:border-l md:border-primary p-8 items-center justify-center max-w-md"
             >
                 <img
                     src="/img/eyes.png"
@@ -63,57 +62,8 @@ const translatePath = useLocalizedPath(url);
                 </h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <SkillCategory title="Web">
-                    <SkillTag name="HTML5 / CSS3" />
-                    <SkillTag name="Spring Boot" />
-                    <SkillTag name="Node.js" />
-                    <SkillTag name="Express.js" />
-                    <SkillTag name="Astro" />
-                    <SkillTag name="Tailwind CSS" />
-                    <SkillTag name="Bootstrap" />
-                    <SkillTag name="JavaScript" />
-                    <SkillTag name="TypeScript" />
-                    <SkillTag name="React" />
-                </SkillCategory>
+            <Skills />
 
-                <SkillCategory title="Bases de Datos">
-                    <SkillTag name="Hibernate / JPA" />
-                    <SkillTag name="MySQL" />
-                    <SkillTag name="MongoDB" />
-                    <SkillTag name="Redis" />
-                </SkillCategory>
-
-                <SkillCategory title="DevOps">
-                    <SkillTag name="Git & GitHub" />
-                    <SkillTag name="Docker & Docker Compose" />
-                    <SkillTag name="CI/CD (GitHub Actions)" />
-                </SkillCategory>
-
-                <SkillCategory title="Otros">
-                    <SkillTag name="Java" />
-                    <SkillTag name="C" />
-                    <SkillTag name="C++" />
-                    <SkillTag name="Linux / Bash" />
-                </SkillCategory>
-
-                <SkillCategory title="Metodologías & Calidad">
-                    <SkillTag name="Integration tests (Vitest)" />
-                    <SkillTag name="Unit tests (JUnit)" />
-                    <SkillTag name="External tests (Karate)" />
-                    <SkillTag name="Agile / Scrum" />
-                    <SkillTag name="SRS" />
-                </SkillCategory>
-
-                <SkillCategory
-                    title="Idiomas"
-                    class="md:col-span-2 lg:col-span-3"
-                >
-                    <SkillTag name="Español" detail="Nativo" />
-                    <SkillTag name="English" detail="C2" />
-                    <SkillTag name="Français" detail="B2" />
-                </SkillCategory>
-            </div>
         </section>
     </div>
 </Layout>

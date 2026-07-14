@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import ProjectCard from "../ProjectCard.astro";
-import { Rss } from "@lucide/astro";
+import RSSButton from "../RSSButton.astro";
 
 import {
     getLangFromUrl,
@@ -38,14 +38,7 @@ const rssFeedPath = translatePath("projects.xml");
             >
                 {t("proyectos.titulo")}
             </h1>
-            <a
-                href={rssFeedPath}
-                class="btn-retro-icon sfx-button inline-flex items-center justify-center"
-                aria-label="RSS Feed"
-                target="_blank"
-            >
-                <Rss />
-            </a>
+            <RSSButton href={rssFeedPath} />
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

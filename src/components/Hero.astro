@@ -87,17 +87,15 @@ const translatePath = useLocalizedPath(url);
 
     <!-- Ascii art image -->
     <div
-      class="hidden md:flex border-t md:border-t-0 md:border-l md:border-primary p-8 items-center justify-center"
+      class="hidden md:flex border-t md:border-t-0 md:border-l md:border-primary p-8 items-center justify-center max-w-md"
     >
-      <div class="max-w-md">
-        <img
+      <img
           src="/img/statue.png"
           alt={t('art.alt')}
           class="w-full h-auto max-h-100 object-contain block"
           loading="lazy"
           decoding="async"
         />
-      </div>
     </div>
   </div>
 </section>
