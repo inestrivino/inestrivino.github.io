@@ -8,7 +8,7 @@
 Vea la página desplegada: [**inestrivino.github.io**](https://inestrivino.github.io)
 
 **Click the badge below to read this file in english:** <br>
-[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/inestrivino/inestrivino.github.io/blob/main/README.en.MD)
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/inestrivino/inestrivino.github.io/blob/main/README.en.md)
 
 ## Funcionalidades
 
