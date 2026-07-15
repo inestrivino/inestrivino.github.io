@@ -23,7 +23,17 @@ const navItems = [
   { href: "/blog", label: "blog" },
 ];
 
-const isActive = (href: string) => url.pathname === translatePath(href);
+const baseUrl = import.meta.env.BASE_URL;
+
+const isActive = (href: string) => {
+  const targetPath = translatePath(href);
+  const cleanPathname = url.pathname.replace(/\/$/, "");
+  const expectedPath = targetPath.startsWith(baseUrl)
+    ? targetPath
+    : `${baseUrl.replace(/\/$/, "")}${targetPath}`;
+
+  return cleanPathname === expectedPath.replace(/\/$/, "");
+};
 ---
 
 <header class="sticky top-0 z-50 w-full bg-inherit font-mono py-3">
@@ -175,8 +185,8 @@ const isActive = (href: string) => url.pathname === translatePath(href);
 
   // function to sync the icons to the state of the volume
   const updateAudioIcons = () => {
-    const isMuted = document.documentElement.hasAttribute('data-muted');
-    
+    const isMuted = document.documentElement.hasAttribute("data-muted");
+
     if (isMuted) {
       volumeOnIcon?.classList.add("hidden");
       volumeMutedIcon?.classList.remove("hidden");
@@ -190,13 +200,13 @@ const isActive = (href: string) => url.pathname === translatePath(href);
   // apply mute and update icons when the button is clicked
   audioButton?.addEventListener("click", () => {
     const html = document.documentElement;
-    
-    if (html.hasAttribute('data-muted')) {
-      html.removeAttribute('data-muted');
-      localStorage.setItem('audio-muted', 'false');
+
+    if (html.hasAttribute("data-muted")) {
+      html.removeAttribute("data-muted");
+      localStorage.setItem("audio-muted", "false");
     } else {
-      html.setAttribute('data-muted', 'true');
-      localStorage.setItem('audio-muted', 'true');
+      html.setAttribute("data-muted", "true");
+      localStorage.setItem("audio-muted", "true");
     }
     updateAudioIcons();
   });
