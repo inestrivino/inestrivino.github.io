@@ -2,8 +2,8 @@
 
 ![Deployment](https://github.com/inestrivino/inestrivino.github.io/actions/workflows/deploy.yml/badge.svg)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-![Astro](https://img.shields.io/badge/astro-%232C2052.svg?style=for-the-badge&logo=astro&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Astro](https://img.shields.io/badge/astro-%232C2052.svg?&logo=astro&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?&logo=tailwind-css&logoColor=white)
 
 Vea la página desplegada: [**inestrivino.github.io**](https://inestrivino.github.io)
 
@@ -82,6 +82,8 @@ En `/.github/workflow/deploy.yml` podrá encontrar el archivo de despliegue de l
 
 1. Construcción del proyecto mediante `npm run build`
 2. Despliegue del proyecto construido a Github Pages
+
+Este workflow solo se produce cuando se ha hecho un commit a la rama `main` del repositorio.
 
 ## Licencia y créditos
 

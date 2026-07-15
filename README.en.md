@@ -2,8 +2,8 @@
 
 ![Deployment](https://github.com/inestrivino/inestrivino.github.io/actions/workflows/deploy.yml/badge.svg)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-![Astro](https://img.shields.io/badge/astro-%232C2052.svg?style=for-the-badge&logo=astro&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Astro](https://img.shields.io/badge/astro-%232C2052.svg?&logo=astro&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?&logo=tailwind-css&logoColor=white)
 
 View the live site: [**inestrivino.github.io**](https://inestrivino.github.io)
 
@@ -47,3 +47,48 @@ View the live site: [**inestrivino.github.io**](https://inestrivino.github.io)
     └── content.config.mjs # Configuration for content collection management
 ├── public/          # Fonts, images, icons, and audio files
 └── astro.config.mjs # Astro configuration file
+```
+
+## Local installation
+
+Dependencies:
+
+- [NPM](https://www.npmjs.com/) must be installed in your machine.
+
+1. Begin by cloning the repository
+
+```bash
+git clone https://github.com/inestrivino/inestrivino.github.io.git
+cd /inestrivino.github.io
+```
+
+2. From the repository's root, execute the following command
+
+```bash
+npm install
+```
+
+3. Start the development server
+
+```bash
+npm run dev
+```
+
+1. When the server has finished startup, go to `localhost:3000` in your navigator, and you will be able to see the page live.
+
+## Deployment and configuration
+
+In `/.github/workflow/deploy.yml` you will be able to find the document for the deployment workflow of the website. It has two steps:
+
+1. Construction of the project through `npm run build`
+2. Deployment of the built project into Github Pages
+
+This workflow runs when a commit happens in the `main` branch.
+
+## Licencia y créditos
+
+All sound effects used in the website come from [Kenney.nl](https://kenney.nl/assets/category:Audio), specifically from the digital audio package.
+
+The icons used in the website are [Lucide Icons](https://lucide.dev/icons/).
+
+The images used in this website are ASCII reconstructions of external images placed over a color background.
