@@ -1,6 +1,17 @@
 ---
 import SkillCategory from "./SkillCategory.astro"
 import SkillTag from "./SkillTag.astro"
+
+import {
+  getLangFromUrl,
+  useTranslations,
+  useLocalizedPath,
+} from "../i18n/utils";
+
+const url = Astro.url;
+const lang = getLangFromUrl(url);
+const t = useTranslations(url);
+
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -17,7 +28,7 @@ import SkillTag from "./SkillTag.astro"
         <SkillTag name="React" />
     </SkillCategory>
 
-    <SkillCategory title="Bases de Datos">
+    <SkillCategory title={t('skills.bd')}>
         <SkillTag name="Hibernate / JPA" />
         <SkillTag name="MySQL" />
         <SkillTag name="MongoDB" />
@@ -31,7 +42,7 @@ import SkillTag from "./SkillTag.astro"
         <SkillTag name="CI/CD (GitHub Actions)" />
     </SkillCategory>
 
-    <SkillCategory title="Otros lenguajes">
+    <SkillCategory title={t('skills.others')}>
         <SkillTag name="Java" />
         <SkillTag name="C" />
         <SkillTag name="C++" />
@@ -40,7 +51,7 @@ import SkillTag from "./SkillTag.astro"
         <SkillTag name="Lua" />
     </SkillCategory>
 
-    <SkillCategory title="Metodologías & Calidad">
+    <SkillCategory title={t('skills.quality')}>
         <SkillTag name="Integration tests (Vitest)" />
         <SkillTag name="Unit tests (JUnit)" />
         <SkillTag name="External tests (Karate)" />
@@ -48,7 +59,7 @@ import SkillTag from "./SkillTag.astro"
         <SkillTag name="SRS" />
     </SkillCategory>
 
-    <SkillCategory title="Idiomas">
+    <SkillCategory title={t('skills.language')}>
         <SkillTag name="Español" detail="Nativo" />
         <SkillTag name="English" detail="C2" />
         <SkillTag name="Français" detail="B2" />

@@ -6,7 +6,6 @@ const blogCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    coverImage: z.string(),
     date: z.coerce.date(), 
   }),
 });
@@ -19,6 +18,7 @@ const projectsCollection = defineCollection({
     coverImage: z.string(),
     date: z.coerce.date(),
     featured: z.boolean().default(false),
+    technologies: z.array(z.string()).default([]),
   }),
 });
 

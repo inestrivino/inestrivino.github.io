@@ -13,7 +13,7 @@ const Element = url ? 'a' : 'span';
 <Element 
   href={url}
   target={url ? "_target" : undefined}
-  class="px-3 py-1.5 border hover:bg-primary hover:text-secondary transition-colors inline-flex items-center gap-1"
+  class="px-3 py-1.5 border border-dashed hover:border-solid hover:bg-primary hover:text-secondary transition-colors inline-flex items-center gap-1"
 >
   {name}
   {detail && <span class="font-normal"> ({detail})</span>}

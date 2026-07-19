@@ -41,6 +41,11 @@ export const ui = {
     'error.inicio': 'Volver al inicio',
     'error.mensaje': 'La ruta que intentas inspeccionar ha sido eliminada o ha cambiado de nombre.',
 
+    'skills.bd': 'Bases de Datos',
+    'skills.others': 'Otros lenguajes',
+    'skills.quality': 'Metodología y Calidad',
+    'skills.language': 'Idiomas',
+
     'contenido.tabla': 'Tabla de contenidos',
     'contenido.noSecciones': 'No hay secciones',
     'contenido.noContenido': 'Aún no hay nada aquí.',
@@ -95,6 +100,11 @@ export const ui = {
     'error.error': 'in the solicited memory location',
     'error.inicio': 'Return to Home',
     'error.mensaje': 'The route you are trying to inspect has been deleted or changed name.',
+
+    'skills.bd': 'Databases',
+    'skills.others': 'Other languages',
+    'skills.quality': 'Methodology and Quality',
+    'skills.language': 'Natural Languages',
 
     'contenido.tabla': 'Contents table',
     'contenido.noSecciones': 'There are no sections',

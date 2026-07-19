@@ -57,7 +57,7 @@ const translatePath = useLocalizedPath(url);
 
       <div class="flex justify-center gap-6 pt-8">
         <a
-          href="/CV.pdf" target="_blank"
+          href={translatePath('/CV.pdf')} target="_blank"
           class="btn-retro-icon btn-retro-big sfx-button"
           aria-label="Ver Currículum"
           data-title={t('tooltip.cv')}

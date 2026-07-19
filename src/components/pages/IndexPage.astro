@@ -61,6 +61,8 @@ const latestPosts = allPosts.slice(0, 4);
                         <ProjectCard
                             title={pro.data.title}
                             description={pro.data.description}
+                            coverImage={pro.data.coverImage},
+                            technologies={pro.data.technologies},
                             url={translatePath(
                                 `${pro.id
                                     .split("/")

@@ -32,7 +32,7 @@ const rssFeedPath = translatePath("projects.xml");
     <section
         class="w-full max-w-5xl mx-auto p-4 md:p-8 min-h-[calc(100vh-80px)] flex flex-col justify-start"
     >
-        <div class="flex justify-between items-end mb-10 mt-4">
+        <div class="flex flex-wrap justify-between items-end mb-10 mt-4">
             <h1
                 class="font-ascii text-4xl md:text-5xl uppercase tracking-wider"
             >
@@ -48,6 +48,8 @@ const rssFeedPath = translatePath("projects.xml");
                         <ProjectCard
                             title={pro.data.title}
                             description={pro.data.description}
+                            coverImage={pro.data.coverImage},
+                            technologies={pro.data.technologies},
                             url={translatePath(
                                 `${pro.id
                                     .split("/")

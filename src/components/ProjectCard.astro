@@ -1,33 +1,70 @@
 ---
+import SkillTag from "./SkillTag.astro"
+
 interface Props {
   title: string;
   description: string;
   url: string;
+  coverImage?: string;
+  technologies?: string[];
 }
 
-const { title, description, url } = Astro.props;
+const { title, description, url, coverImage, technologies=[] } = Astro.props;
 ---
-<a href={url} class="cursor-pointer border border-primary flex flex-col group hover:border-primary relative bg-inherit sfx-project transition-transform duration-200 ease-out hover:scale-105 z-0 hover:z-10 decoration-none">
 
-  <div class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-primary"></div>
-  <div class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-primary"></div>
-  <div class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-primary"></div>
-  <div class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-primary"></div>
-
-  <div class="bg-primary aspect-video w-full flex items-center justify-center text-secondary font-bold">
-    [ preview ]
+<a
+  href={url}
+  class="cursor-pointer border border-primary flex flex-col group hover:border-primary relative bg-inherit sfx-project transition-transform duration-200 ease-out hover:scale-105 z-0 hover:z-10 decoration-none text-inherit"
+>
+  <div
+    class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-primary"
+  >
   </div>
-  
-  <div class="p-4 bg-secondary grow flex justify-between items-start border-t border-primary">
-    <div>
+  <div
+    class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-primary"
+  >
+  </div>
+  <div
+    class="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-primary"
+  >
+  </div>
+  <div
+    class="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 bg-primary"
+  >
+  </div>
+
+  {
+    coverImage ? (
+      <div class="aspect-video w-full overflow-hidden">
+        <img
+          src={coverImage}
+          alt={`Miniatura de ${title}`}
+          class="w-full h-full object-cover"
+        />
+      </div>
+    ) : (
+      <div class="bg-primary aspect-video w-full flex items-center justify-center text-secondary font-bold">
+        [ preview ]
+      </div>
+    )
+  }
+
+<div
+    class="p-4 bg-secondary grow flex justify-between items-start border-t border-primary"
+  >
+    <div class="flex-1 min-w-0">
       <h3 class="font-bold group-hover:text-primary">{title}</h3>
       <p class="mt-1 text-sm">{description}</p>
-    </div>
-    
-    <div class="grid grid-cols-4 gap-1">
-      {[...Array(8)].map(() => (
-        <div class="w-3 h-3 bg-primary"></div>
-      ))}
+      
+      {
+        technologies.length > 0 && (
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            {technologies.map((tech) => (
+              <SkillTag name={tech} />
+            ))}
+          </div>
+        )
+      }
     </div>
   </div>
 </a>
