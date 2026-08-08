@@ -11,7 +11,7 @@
 }
 
 :root {
-  --primary-color: #a7a2e7;
+  --primary-color: #94E2D5;
   --secondary-color: #121212;
 
   --font-ascii: 'Sixtyfour';
@@ -19,7 +19,7 @@
 
 html.light {
   --primary-color: #121212;
-  --secondary-color: #b9b4fa;
+  --secondary-color: #b8e0da;
 }
 
 @theme {
@@ -28,24 +28,27 @@ html.light {
   --color-secondary: var(--secondary-color);
 }
 
-@utility h1 {
-  font-family: var(--font-ascii), monospace;
-  text-shadow: 0 0 5px currentColor;
+@keyframes pulse-glow {
+  0%, 100% {
+    text-shadow: 0 0 5px #94E2D5;
+  }
+  50% {
+    text-shadow: 0 0 1px #94E2D5;
+  }
 }
 
 h1 {
   font-family: var(--font-ascii), monospace !important;
-  text-shadow: 0 0 5px currentColor !important;
+  animation: pulse-glow 3s ease-in-out infinite !important;
 }
 
 h2 {
   font-family: var(--font-ascii), monospace !important;
-  text-shadow: 0 0 5px currentColor !important;
+  animation: pulse-glow 3s ease-in-out infinite !important;
   font-size: 1.5rem;
 }
 
 h3 {
-  text-shadow: 0 0 2px currentColor !important;
   font-size: 1.3rem;
 }
 

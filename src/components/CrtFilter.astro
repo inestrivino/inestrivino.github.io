@@ -5,19 +5,14 @@
 
 <style>
   :root {
-    --crt-scanline-color: rgba(0, 0, 0, 0.25); 
-    --crt-flicker-opacity-min: 0.92;
-    --crt-flicker-bright-max: 1.05;
-    --text-glow: 
-      0 0 4px rgba(167, 162, 231, 0.4),
-      0 0 10px rgba(167, 162, 231, 0.2);
-  }
-
-  :global(html.light) {
     --crt-scanline-color: rgba(18, 18, 18, 0.06); 
     --crt-flicker-opacity-min: 0.97;
     --crt-flicker-bright-max: 1.02;
-    --text-glow: 0 0 2px rgba(18, 18, 18, 0.1);
+    --text-glow: 0 0 1px rgba(18, 18, 18, 0.1);
+  }
+
+  :global(html.light) {
+    --text-glow: 0 0 0px rgba(18, 18, 18, 0.1);
   }
 
   .crt-overlay {
