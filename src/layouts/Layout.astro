@@ -17,10 +17,10 @@ interface Props {
 
 const { title, description, lang } = Astro.props;
 
-import { useLocalizedPath } from "../i18n/utils";
+import { useLocalizedPath, type Locale } from "../i18n/utils";
 
-const url = Astro.url;
-const translatePath = useLocalizedPath(url);
+const currentLang = (Astro.currentLocale || "es") as Locale;
+const translatePath = useLocalizedPath(currentLang);
 
 const rssBlogPath = translatePath("blog.xml");
 const rssProjectsPath = translatePath("projects.xml");

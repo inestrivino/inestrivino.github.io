@@ -5,7 +5,7 @@ import {
   getRssLang,
 } from '../../i18n/utils';
 
-const lang = 'en';
+const lang = 'es';
 
 export async function GET(context) {
   const t = useTranslations(lang);

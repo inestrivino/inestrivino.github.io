@@ -38,12 +38,18 @@ Vea la página desplegada: [**inestrivino.github.io**](https://inestrivino.githu
         └── pages/   # Páginas de la web reusables para cada idioma
 │   ├── layouts/     # Estructura HTML básica para todas las páginas
 │   ├── pages/       # Routing: Páginas, feeds RSS
+        ├── es/    
+        └── en/
     ├── styles/      # Estilos CSS específicos
     ├── i18n/        # Internacionalización: Herramientas y texto
     ├── utils/       # Otras herramientas útiles en el desarrollo del proyecto
 │   ├── content/     # Archivos Markdown para la creación de posts y proyectos
         ├── blog/
+            ├── es/   
+            └── en/
         └── projects/
+            ├── es/   
+            └── en/
     └── content.config.mjs # Configuración para el manejo de colecciones
 ├── public/          # Fuentes, imágenes, iconos, sonidos
 └── astro.config.mjs # Configuración Astro para el proyecto

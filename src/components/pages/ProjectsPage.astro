@@ -3,19 +3,11 @@ import Layout from "../../layouts/Layout.astro";
 import ProjectCard from "../ProjectCard.astro";
 import RSSButton from "../RSSButton.astro";
 
-import {
-    getLangFromUrl,
-    useTranslations,
-    useLocalizedPath,
-    getLocalizedProjects,
-} from "../../i18n/utils";
+import { useTranslations, useLocalizedPath, getLocalizedProjects, type Locale } from "../../i18n/utils";
 
-const url = Astro.url;
-const t = useTranslations(url);
-const translatePath = useLocalizedPath(url);
-
-// We obtain the current active language
-const currentLang = getLangFromUrl(url);
+const currentLang = (Astro.currentLocale || "es") as Locale;
+const t = useTranslations(currentLang);
+const translatePath = useLocalizedPath(currentLang);
 
 // We get the collections corresponding to that language
 const allProjects = await getLocalizedProjects(currentLang);

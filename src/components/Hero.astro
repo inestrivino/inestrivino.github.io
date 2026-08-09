@@ -1,20 +1,12 @@
 ---
-
 import { FileUser } from "@lucide/astro";
 import { Cat } from "@lucide/astro";
 import { Briefcase } from "@lucide/astro";
+import { useTranslations, useLocalizedPath, type Locale } from "../i18n/utils";
 
-import {
-  getLangFromUrl,
-  useTranslations,
-  useLocalizedPath,
-} from "../i18n/utils";
-
-const url = Astro.url;
-const lang = getLangFromUrl(url);
-const t = useTranslations(url);
-const translatePath = useLocalizedPath(url);
-
+const currentLang = (Astro.currentLocale || "es") as Locale;
+const t = useTranslations(currentLang);
+const translatePath = useLocalizedPath(currentLang);
 ---
 
 <section
@@ -51,22 +43,24 @@ const translatePath = useLocalizedPath(url);
       <!-- Description text -->
       <div class="space-y-8 leading-relaxed text-left md:text-justify">
         <p>
-          {t('home.descripcion')}
+          {t("home.descripcion")}
         </p>
       </div>
 
       <div class="flex justify-center gap-6 pt-8">
         <a
-          href={translatePath('/CV.pdf')} target="_blank"
+          href={translatePath("/CV.pdf")}
+          target="_blank"
           class="btn-retro-icon btn-retro-big sfx-button"
           aria-label="Ver Currículum"
-          data-title={t('tooltip.cv')}
+          data-title={t("tooltip.cv")}
         >
           <FileUser class="w-full h-full" stroke-width="1" />
         </a>
 
         <a
-          href="https://github.com/inestrivino/" target="_blank"
+          href="https://github.com/inestrivino/"
+          target="_blank"
           class="btn-retro-icon btn-retro-big sfx-button"
           aria-label="GitHub"
           data-title="GITHUB"
@@ -75,7 +69,8 @@ const translatePath = useLocalizedPath(url);
         </a>
 
         <a
-          href="https://www.linkedin.com/in/ines-trivino/" target="_blank"
+          href="https://www.linkedin.com/in/ines-trivino/"
+          target="_blank"
           class="btn-retro-icon btn-retro-big sfx-button"
           aria-label="LinkedIn"
           data-title="LINKEDIN"
@@ -90,12 +85,12 @@ const translatePath = useLocalizedPath(url);
       class="hidden md:flex border-t md:border-t-0 md:border-l md:border-primary p-8 items-center justify-center max-w-md"
     >
       <img
-          src="/img/statue.png"
-          alt={t('art.alt')}
-          class="w-full h-auto max-h-100 object-contain block"
-          loading="lazy"
-          decoding="async"
-        />
+        src="/img/statue.png"
+        alt={t("art.alt")}
+        class="w-full h-auto max-h-100 object-contain block"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </div>
 </section>

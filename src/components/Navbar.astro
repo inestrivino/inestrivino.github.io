@@ -1,20 +1,19 @@
 ---
 import { Moon, Sun, Globe, Volume2, VolumeX, Menu, X } from "@lucide/astro";
-
 import {
-  getLangFromUrl,
-  getTargetRef,
   useTranslations,
+  getTargetRef,
   useLocalizedPath,
+  type Locale,
 } from "../i18n/utils";
+import { languages } from "../i18n/ui.ts";
 
-import { languages } from "../i18n/ui";
-
+const currentLang = (Astro.currentLocale || "es") as Locale;
 const url = Astro.url;
-const lang = getLangFromUrl(url);
-const t = useTranslations(url);
-const translatePath = useLocalizedPath(url);
-const getHrefForLang = getTargetRef(url);
+
+const t = useTranslations(currentLang);
+const translatePath = useLocalizedPath(currentLang);
+const getHrefForLang = getTargetRef(url, currentLang);
 
 const navItems = [
   { href: "/", label: t("nav.inicio") },
@@ -132,15 +131,25 @@ const isActive = (href: string) => {
           <div class="py-1 flex flex-col">
             {
               Object.entries(languages).map(([code, label]) => {
-                const isCurrent = lang === code;
+                const isCurrent = currentLang === code;
                 return (
                   <a
-                    href={getHrefForLang(code as any)}
-                    class={`dropdown-item ${isCurrent ? "dropdown-item-active" : "dropdown-item-inactive"}`}
+                    href={getHrefForLang(code as Locale)}
+                    class:list={[
+                      "dropdown-item",
+                      isCurrent
+                        ? "dropdown-item-active"
+                        : "dropdown-item-inactive",
+                    ]}
                     role="menuitem"
+                    aria-current={isCurrent ? "page" : undefined}
                   >
                     <span>{label}</span>
-                    {isCurrent && <span class="text-xs">●</span>}
+                    {isCurrent && (
+                      <span class="text-xs" aria-hidden="true">
+                        ●
+                      </span>
+                    )}
                   </a>
                 );
               })

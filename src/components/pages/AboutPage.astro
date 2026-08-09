@@ -1,17 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Skills from "../Skills.astro";
+import { useTranslations, type Locale } from "../../i18n/utils";
 
-import {
-    getLangFromUrl,
-    useTranslations,
-    useLocalizedPath,
-} from "../../i18n/utils";
+const currentLang = (Astro.currentLocale || "es") as Locale;
+const t = useTranslations(currentLang);
 
-const url = Astro.url;
-const currentLang = getLangFromUrl(url);
-const t = useTranslations(url);
-const translatePath = useLocalizedPath(url);
 ---
 
 <Layout

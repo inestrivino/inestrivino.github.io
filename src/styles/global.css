@@ -19,7 +19,7 @@
 
 html.light {
   --primary-color: #121212;
-  --secondary-color: #bbb8e0;
+  --secondary-color: hsl(244, 45%, 80%);
 }
 
 @theme {

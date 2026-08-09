@@ -1,108 +1,77 @@
-import { ui, defaultLang, routes } from './ui';
-type Locale = keyof typeof ui;
+import { ui, defaultLang, routes } from './ui'; // Importamos routes
 import { getCollection } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
-// Extracts the current language from the URL
-export function getLangFromUrl(url: URL): Locale {
-  const [, prefix] = url.pathname.split('/');
-  if (prefix in ui) {
-    return prefix as Locale;
-  }
-  return defaultLang;
-}
+export type Locale = keyof typeof ui;
+const supportedLocales = Object.keys(ui);
+const localePrefixRegex = new RegExp(`^\\/(${supportedLocales.join('|')})(\\/|$)`);
 
-export function getRssLang(lang: Locale = defaultLang): string {
-  return lang === 'en' ? 'en-us' : 'es-es';
-}
+//translates routes that appear in ui.ts/routes
+function getTranslatedRoute(path: string, currentLang: Locale, targetLang: Locale): string {
+  const cleanPath = path.replace(/^\/|\/$/g, '');
+  
+  if (!cleanPath) return '';
 
-// Translates text keys based on URL
-export function useTranslations(url: URL) {
-  const lang = getLangFromUrl(url);
-
-  return function t(key: keyof typeof ui[typeof defaultLang]) {
-    return ui[lang][key] || ui[defaultLang][key];
-  };
-}
-
-// Resolves the localized path name based on the target language dictionary
-function getRouteTranslation(cleanPath: string, currentLang: Locale, targetLang: Locale): string {
-  // Find the original key by looking up what the current URL segment means in English/Spanish/etc.
-  const routeKey = Object.keys(routes[currentLang]).find(
-    (key) => routes[currentLang][key as keyof typeof routes[typeof currentLang]] === cleanPath
+  const routeKey = (Object.keys(routes[currentLang]) as Array<keyof typeof routes[typeof currentLang]>).find(
+    (key) => routes[currentLang][key] === cleanPath
   ) || cleanPath;
 
-  // Grab the translation for the target language, or fallback to the base key
   if (routes[targetLang] && routeKey in routes[targetLang]) {
     return routes[targetLang][routeKey as keyof typeof routes[typeof targetLang]];
   }
 
-  return routeKey;
+  return cleanPath;
 }
 
-// Hook to generate internal links for the current active language
-export function useLocalizedPath(url: URL) {
-  const currentLang = getLangFromUrl(url);
+// RSS language detection
+export function getRssLang(lang: Locale = defaultLang): string {
+  return lang === 'en' ? 'en-us' : 'es-es';
+}
 
-  return function translatePath(path: string, forceTargetLang?: Locale) {
-    const targetLang = forceTargetLang || currentLang;
-    const cleanPath = path.replace(/^\/|\/$/g, '');
-
-    // Translate the path segment dynamically
-    const targetPath = getRouteTranslation(cleanPath, currentLang, targetLang);
-
-    // Build absolute URL string based on default routing rule
-    if (targetLang === defaultLang) {
-      return targetPath === '' ? '/' : `/${targetPath}`;
-    }
-    return `/${targetLang}${targetPath === '' ? '' : '/' + targetPath}`;
+// UI text translation
+export function useTranslations(lang: Locale) {
+  return function t(key: keyof typeof ui[typeof defaultLang]) {
+    return ui[lang]?.[key] || ui[defaultLang][key];
   };
 }
 
-// Universal language switcher for dropdown menu
-export function getTargetRef(url: URL) {
-  const currentLang = getLangFromUrl(url);
-  const translatePath = useLocalizedPath(url);
+// Translate URLs depending on the language used
+export function useLocalizedPath(currentLang: Locale) {
+  return function translatePath(path: string, targetLang: Locale = currentLang) {
+    let cleanPath = path.replace(/^\/|\/$/g, '');
+    cleanPath = cleanPath.replace(new RegExp(`^${currentLang}/`), '');
 
+    // Static assets (files with extensions like .pdf) bypass route translations
+    // and must have their trailing slashes stripped.
+    if (/\.[a-z0-9]+$/i.test(cleanPath)) {
+      const url = getRelativeLocaleUrl(targetLang, cleanPath);
+      return url.replace(/\/$/, '');
+    }
+
+    const translatedSegment = getTranslatedRoute(cleanPath, currentLang, targetLang);
+    return getRelativeLocaleUrl(targetLang, translatedSegment);
+  };
+}
+
+// Language selector
+export function getTargetRef(currentUrl: URL, currentLang: Locale) {
   return function getHrefForLang(targetLang: Locale): string {
     if (targetLang === currentLang) return '#';
-
-    const cleanPath = url.pathname.replace(/^\/|\/$/g, '');
-
-    // If we are currently in a sub-language, drop the language prefix code from the segment lookup
-    const pathWithoutLang = currentLang !== defaultLang
-      ? cleanPath.replace(new RegExp(`^${currentLang}(\/|$)`), '')
-      : cleanPath;
-
-    // Use our enhanced translatePath, forcing it to calculate for the selected target language
-    return translatePath(pathWithoutLang || '/', targetLang);
+    const currentPath = currentUrl.pathname.replace(localePrefixRegex, '');
+    const translatedPath = getTranslatedRoute(currentPath, currentLang, targetLang);
+    return getRelativeLocaleUrl(targetLang, translatedPath);
   };
 }
 
-// Helper to filter content by language based on its folder structure
+// Content collections filtering based on language
 export async function getLocalizedBlog(lang: Locale = defaultLang) {
   const allPosts = await getCollection('blog');
-
   return allPosts
-    .filter((post) => {
-      // If language is the default language, it shouldn't be inside any language subfolder
-      if (lang === defaultLang) {
-        return !post.id.includes('/');
-      }
-      // For other languages, the ID must start with the language code
-      return post.id.startsWith(`${lang}/`);
-    })
-    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()); // Newest first
+    .filter((post) => post.id.startsWith(`${lang}/`))
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
 
 export async function getLocalizedProjects(lang: Locale = defaultLang) {
   const allProjects = await getCollection('projects');
-
-  return allProjects.filter((project) => {
-    // If language is the default language, it shouldn't be inside any language subfolder
-    if (lang === defaultLang) {
-      return !project.id.includes('/');
-    }
-    // For other languages, the ID must start with the language code
-    return project.id.startsWith(`${lang}/`);
-  })
+  return allProjects.filter((project) => project.id.startsWith(`${lang}/`));
 }
