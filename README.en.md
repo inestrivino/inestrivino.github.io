@@ -32,21 +32,27 @@ View the live site: [**inestrivino.github.io**](https://inestrivino.github.io)
 
 ```plaintext
 ├── .github/
-    └── workflows/   # Contains CI/CD workflows for the application
+    └── workflows/   # Contiene workflows CI/CD de la aplicación
 ├── src/
-│   ├── components/  # Reusable UI components
-        └── pages/   # Reusable website pages for each language
-│   ├── layouts/     # Base HTML layout for all pages
-│   ├── pages/       # Routing: Pages and RSS feeds
-    ├── styles/      # Specific CSS styles
-    ├── i18n/        # Internationalization: Tools and translations
-    ├── utils/       # Other helper utilities for development
-│   ├── content/     # Markdown files for blog posts and projects
+│   ├── components/  # Componentes de UI reusables
+        └── pages/   # Páginas de la web reusables para cada idioma
+│   ├── layouts/     # Estructura HTML básica para todas las páginas
+│   ├── pages/       # Routing: Páginas, feeds RSS
+        ├── es/    
+        └── en/
+    ├── styles/      # Estilos CSS específicos
+    ├── i18n/        # Internacionalización: Herramientas y texto
+    ├── utils/       # Otras herramientas útiles en el desarrollo del proyecto
+│   ├── content/     # Archivos Markdown para la creación de posts y proyectos
         ├── blog/
+            ├── es/   
+            └── en/
         └── projects/
-    └── content.config.mjs # Configuration for content collection management
-├── public/          # Fonts, images, icons, and audio files
-└── astro.config.mjs # Astro configuration file
+            ├── es/   
+            └── en/
+    └── content.config.mjs # Configuración para el manejo de colecciones
+├── public/          # Fuentes, imágenes, iconos, sonidos
+└── astro.config.mjs # Configuración Astro para el proyecto
 ```
 
 ## Local installation
