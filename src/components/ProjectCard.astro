@@ -13,7 +13,7 @@ const { title, description, url, coverImage, technologies=[] } = Astro.props;
 ---
 
 <a
-  href={url}
+  href={url} target="_blank"
   class="cursor-pointer border border-primary flex flex-col group hover:border-primary relative bg-inherit sfx-project transition-transform duration-200 ease-out hover:scale-105 z-0 hover:z-10 decoration-none text-inherit"
 >
   <div

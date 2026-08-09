@@ -46,16 +46,11 @@ const rssFeedPath = translatePath("projects.xml");
                 allProjects.length > 0 ? (
                     allProjects.map((pro) => (
                         <ProjectCard
-                            title={pro.data.title}
-                            description={pro.data.description}
+                            title={pro.data.title},
+                            description={pro.data.description},
+                            url={pro.data.url},
                             coverImage={pro.data.coverImage},
                             technologies={pro.data.technologies},
-                            url={translatePath(
-                                `${pro.id
-                                    .split("/")
-                                    .pop()
-                                    ?.replace(/\.[^/.]+$/, "")}`,
-                            )}
                         />
                     ))
                 ) : (

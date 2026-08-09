@@ -11,7 +11,7 @@
 }
 
 :root {
-  --primary-color: #94E2D5;
+  --primary-color: #a7a2e7;
   --secondary-color: #121212;
 
   --font-ascii: 'Sixtyfour';
@@ -19,7 +19,7 @@
 
 html.light {
   --primary-color: #121212;
-  --secondary-color: #b8e0da;
+  --secondary-color: #bbb8e0;
 }
 
 @theme {

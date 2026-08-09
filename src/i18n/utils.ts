@@ -105,5 +105,4 @@ export async function getLocalizedProjects(lang: Locale = defaultLang) {
     // For other languages, the ID must start with the language code
     return project.id.startsWith(`${lang}/`);
   })
-    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()); // Newest first;
 }
