@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* Fonts, themes and typography */
 
@@ -19,7 +20,7 @@
 
 html.light {
   --primary-color: #121212;
-  --secondary-color: hsl(244, 45%, 80%);
+  --secondary-color: #b8b5e3;
 }
 
 @theme {
@@ -28,12 +29,26 @@ html.light {
   --color-secondary: var(--secondary-color);
 }
 
-@keyframes pulse-glow {
-  0%, 100% {
-    text-shadow: 0 0 5px #94E2D5;
+.prose {
+  --tw-prose-invert-body: var(--primary-color);
+  --tw-prose-links: var(--primary-color);
+  --tw-prose-headings: var(--primary-color);
+  --tw-prose-code: var(--primary-color);
+  --tw-prose-body: var(--primary-color);
+  & * {
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 5px #b8b5e3;
+  }
+
   50% {
-    text-shadow: 0 0 1px #94E2D5;
+    text-shadow: 0 0 1px #b8b5e3;
   }
 }
 
@@ -134,32 +149,4 @@ p {
 
 .dropdown-item-inactive {
   @apply opacity-80;
-}
-
-
-/* Styles for markdown rendering */
-
-.markdown-body :global(p) {
-  margin-bottom: 1.5rem;
-}
-
-.markdown-body :global(h2),
-.markdown-body :global(h3) {
-  /* To keep the navbar from making clicked subtitles invisible behind it */
-  scroll-margin-top: 5rem;
-}
-
-/* To separate chapters */
-.markdown-body :global(h2) {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.markdown-body :global(h3) {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
 }
