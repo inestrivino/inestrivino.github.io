@@ -1,100 +1,29 @@
 ---
-import { getCollection, render } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
-import { useTranslations, type Locale } from "../../i18n/utils";
+import { getLocalizedBlog, type Locale } from "../../i18n/utils";
+import { ui } from '../../i18n/ui';
+import BlogPostPage from "../../components/pages/BlogPostPage.astro";
 
 export async function getStaticPaths() {
-    const blogPosts = await getCollection("blog");
+    const supportedLocales = Object.keys(ui) as Locale[];
+    const paths = [];
 
-    return blogPosts.map((post) => {
-        const [lang, ...slugSegments] = post.id.split("/");
-        const slug = slugSegments.join("/");
+    for (const lang of supportedLocales) {
+        const blogPosts = await getLocalizedBlog(lang);
 
-        return {
-            params: { lang, slug },
-            props: { post, lang: lang as Locale },
-        };
-    });
+        for (const post of blogPosts) {
+            const slug = post.id.replace(`${lang}/`, "");
+
+            paths.push({
+                params: { lang, slug },
+                props: { post, lang },
+            });
+        }
+    }
+
+    return paths;
 }
 
 const { post, lang } = Astro.props;
-const { Content, headings } = await render(post);
-const t = useTranslations(lang);
-
-const formattedDate = post.data.date
-    .toLocaleDateString(lang === "en" ? "en-US" : "es-ES", {
-        year: "2-digit",
-        month: "2-digit",
-        day: "2-digit",
-    })
-    .replaceAll("/", ".");
 ---
 
-<Layout title={post.data.title} description={post.data.description} lang={lang}>
-    <div
-        class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto mt-6 md:mt-10 px-4 sm:px-6 w-full"
-    >
-        <aside class="hidden md:block md:col-span-1">
-            <div class="sticky top-8">
-                <h3 class="font-bold text-lg mb-4">
-                    {t("contenido.tabla")}
-                </h3>
-                {
-                    headings.length > 0 ? (
-                        <ul class="list-none p-0 m-0 space-y-2">
-                            {headings.map((h) => (
-                                <li
-                                    class={
-                                        h.depth === 3
-                                            ? "pl-4"
-                                            : h.depth === 4
-                                              ? "pl-8"
-                                              : ""
-                                    }
-                                >
-                                    <a
-                                        href={`#${h.slug}`}
-                                        class="hover:underline text-sm transition-colors opacity-80 hover:opacity-100"
-                                    >
-                                        {h.text}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <p class="text-sm opacity-70">
-                            {t("contenido.noSecciones")}
-                        </p>
-                    )
-                }
-            </div>
-        </aside>
-
-        <section class="col-span-1 md:col-span-3 min-w-0">
-            <header
-                class="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-2 mb-4"
-            >
-                <h1 class="text-2xl sm:text-4xl font-bold m-0 leading-tight">
-                    {post.data.title}
-                </h1>
-                <time
-                    datetime={post.data.date.toISOString()}
-                    class="whitespace-nowrap font-bold text-sm sm:text-base opacity-75"
-                >
-                    {formattedDate}
-                </time>
-            </header>
-
-            <hr class="border-t mb-8 opacity-30" />
-            <article
-                class="prose prose-lg max-w-none
-           prose-p:mb-10
-           prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-20 prose-h2:scroll-mt-20
-           prose-img:my-10
-           prose-a:underline prose-a:underline-offset-4"
-            >
-                <Content />
-            </article>
-        </section>
-    </div>
-</Layout>
+<BlogPostPage post={post} lang={lang} />

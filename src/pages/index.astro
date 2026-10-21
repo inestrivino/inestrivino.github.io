@@ -1,0 +1,84 @@
+---
+import "../styles/global.css";
+import {ui, defaultLang} from "../i18n/ui";
+
+const supportedLocales = Object.keys(ui);
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Inés' Website</title>
+
+        <!-- SEO AND METADATA -->
+        <meta name="description" content="Portfolio website for Inés Triviño" />
+        <meta name="author" content="Inés Triviño" />
+        <link rel="canonical" href="https://inestrivino.github.io" />
+        <meta name="generator" content={Astro.generator} />
+        <link rel="sitemap" href="/sitemap-index.xml" />
+
+        <!-- UI and Icons -->
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
+
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://inestrivino.github.io" />
+        <meta property="og:title" content="Inés' Website" />
+        <meta property="og:description" content="Portfolio website for Inés Triviño" />
+        <meta property="og:image" content="/favicon.png" />
+
+        <!-- THEME & AUTOMATIC LANGUAGE REDIRECT SCRIPT -->
+        <script is:inline define:vars={{ supportedLocales, defaultLang }}>
+            // THEME
+            const getThemePreference = () => {
+                if (
+                    typeof localStorage !== "undefined" &&
+                    localStorage.getItem("theme")
+                ) {
+                    return localStorage.getItem("theme");
+                }
+                return window.matchMedia("(prefers-color-scheme: light)")
+                    .matches
+                    ? "light"
+                    : "dark";
+            };
+
+            const theme = getThemePreference();
+            const bgColor = theme === "light" ? "#e7e9d2" : "#121212";
+            const textColor = theme === "light" ? "#0f380f" : "#a2e7b8";
+            
+            document.documentElement.style.backgroundColor = bgColor;
+            document.documentElement.style.color = textColor;
+
+            if (theme === "light") {
+                document.documentElement.classList.add("light");
+            } else {
+                document.documentElement.classList.remove("light");
+            }
+
+            // DETECT LANGUAGE AND REDIRECT
+            const rawUserLang = (navigator.language || navigator.userLanguage || defaultLang).toLowerCase();
+            const primaryLang = rawUserLang.split("-")[0];
+            let targetLocale = defaultLang;
+
+            // Check if the language the user uses is supported
+            if (supportedLocales.includes(rawUserLang)) {
+                targetLocale = rawUserLang;
+            } 
+            else if (supportedLocales.includes(primaryLang)) {
+                targetLocale = primaryLang;
+            }
+
+            // Redirect the user to their corresponding locale
+            window.location.replace(`/${targetLocale}/`);
+        </script>
+    </head>
+    <body class="flex items-center justify-center min-h-screen m-0">
+        <h1 class="text-xl md:text-3xl text-center tracking-wider px-4">
+            [ DETECTING SYSTEM LANGUAGE... ]
+        </h1>
+    </body>
+</html>

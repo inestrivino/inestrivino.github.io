@@ -23,6 +23,13 @@ html.light {
   --secondary-color: #e7e9d2;
 }
 
+body {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  min-height: 100vh;
+  margin: 0;
+}
+
 @theme {
   --font-ascii: var(--font-ascii);
   --color-primary: var(--primary-color);
