@@ -5,7 +5,6 @@ import { useTranslations, type Locale } from "../../i18n/utils";
 
 const currentLang = (Astro.currentLocale || "es") as Locale;
 const t = useTranslations(currentLang);
-
 ---
 
 <Layout
@@ -13,34 +12,29 @@ const t = useTranslations(currentLang);
     description={t("about.description")}
     lang={currentLang}
 >
-    <div class="px-6 py-12 md:py-20 space-y-16">
+    <div class="px-6 py-6 md:py-6 space-y-6">
         <section
-            class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center"
+            class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center"
         >
-            <div class="space-y-6">
+            <div class="space-y-6 p-8 md:p-12">
                 <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
                     {t("about.titulo")}
                 </h1>
                 <div class="space-y-4 text-base md:text-lg leading-relaxed">
-                    <p>
-                        {t('about.parrafo1')}
-                    </p>
-                    <p>
-                       {t('about.parrafo2')}
-                    </p>
-                    <p>
-                        {t('about.parrafo3')}
-                    </p>
+                    <p>{t("about.parrafo1")}</p>
+                    <p>{t("about.parrafo2")}</p>
+                    <p>{t("about.parrafo3")}</p>
                 </div>
             </div>
 
+            <!-- Right Column: Picture (takes 50% width on desktop) -->
             <div
-                class="hidden md:flex border-t md:border-t-0 md:border-l md:border-primary p-8 items-center justify-center max-w-md"
+                class="hidden md:flex border-l border-primary p-8 md:p-12 justify-center items-center"
             >
                 <img
                     src="/img/venus.webp"
-                    alt={t("art.alt")}
-                    class="w-full h-auto max-h-100 object-contain block"
+                    alt={t("art.aboutme")}
+                    class="w-full max-w-sm h-auto object-contain"
                     loading="lazy"
                     decoding="async"
                 />
@@ -52,12 +46,11 @@ const t = useTranslations(currentLang);
         <section class="max-w-6xl mx-auto space-y-8">
             <div class="space-y-2">
                 <h2 class="text-2xl md:text-3xl font-semibold">
-                    {t('about.technologies')}
+                    {t("about.technologies")}
                 </h2>
             </div>
 
             <Skills />
-
         </section>
     </div>
 </Layout>

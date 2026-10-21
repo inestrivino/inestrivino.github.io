@@ -17,7 +17,8 @@ export const ui = {
     'tooltip.menu': 'Menú',
     'tooltip.cv': 'VER CV',
 
-    'art.alt': 'Arte Ascii decorativo',
+    'art.hero': 'Imagen de una placa',
+    'art.aboutme': 'Imagen de una planta venus atrapamoscas',
 
     'home.title': 'Inés Triviño | Inicio',
     'home.description': "Página portfolio de Inés Triviño",
@@ -77,7 +78,8 @@ export const ui = {
     'tooltip.menu': 'Menu',
     'tooltip.cv': 'READ CV',
 
-    'art.alt': 'Decorative Ascii art',
+    'art.hero': 'Picture of a motherboard',
+    'art.aboutme': 'Picture of a venus flytrap plant',
 
     'home.title': 'Inés Triviño | Home',
     'home.description': "Portfolio website for Inés Triviño",

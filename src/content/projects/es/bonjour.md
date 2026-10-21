@@ -2,7 +2,7 @@
 title: bonjour
 description: Aplicación CLI para empezar el día con buen pie.
 url: https://github.com/inestrivino/bonjour
-coverImage: /src/assets/thumbs/estadisticasylogrosaer.png
+coverImage: /src/assets/thumbs/bonjour.png
 featured: true
 technologies: 
 - go

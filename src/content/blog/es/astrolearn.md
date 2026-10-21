@@ -30,9 +30,9 @@ Una vez había tomado la decisión de qué tecnología me ayudaría a realizar t
 
 Con esta inspiración en mente, realicé mis primeros prototipos del diseño en Figma:
 
-![Diseño del inicio de mi página](/img/content/Inicio.png)
-![Diseño de la página de proyectos de mi página](/img/content/Proyectos.png)
-![Diseño del blog de mi página](/img/content/blog.png)
+![Diseño del inicio de mi página](../../../assets/content/Inicio.png)
+![Diseño de la página de proyectos de mi página](../../../assets/content/Proyectos.png)
+![Diseño del blog de mi página](../../../assets/content/blog.png)
 
 Si bien este diseño es completamente posible sin ningún tipo de librería o marco externo, no tenía mucho interés en reinventar la rueda con CSS para estilizar cada elemento, además de la complejidad que eso añadiría a las estructuras de mis archivos CSS.
 Por ello investigué un poco mis opciones, ya que aunque tenía experiencia con Bootstrap, no me pareció la elección lógica para este proyecto. Es una librería que deja poco espacio a la personalización extensiva, además de pesada. 
