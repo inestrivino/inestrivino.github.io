@@ -12,15 +12,15 @@
 }
 
 :root {
-  --primary-color: #a7a2e7;
+  --primary-color: #a2e7b8;
   --secondary-color: #121212;
 
   --font-ascii: 'Sixtyfour';
 }
 
 html.light {
-  --primary-color: #121212;
-  --secondary-color: #b8b5e3;
+  --primary-color: #0f380f;
+  --secondary-color: #e7e9d2;
 }
 
 @theme {
