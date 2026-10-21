@@ -27,7 +27,7 @@ export const ui = {
     'home.posts_recientes': 'Entradas recientes',
     'home.ver_todos': 'Ver todos',
     'home.descripcion':
-      'Ingeniera de Software. Estudiante del Máster de Letras Digitales en la Universidad Complutense de Madrid. Disfruto diseñando e implementando proyectos con nuevas tecnologías.',
+      'Ingeniera de software especializándose en NLP/ML. Estudiante en el máster en Humanidades Digitales (UCM). Actualmente busco prácticas en el campo del desarrollo de software lingüístico o cultural.',
 
     'proyectos.title': 'Inés Triviño | Proyectos',
     'proyectos.description': 'Proyectos creados por Inés Triviño',
@@ -55,12 +55,11 @@ export const ui = {
     'about.description': 'Página para informarse más sobre mi y mis habilidades informáticas',
     'about.titulo': 'Sobre mí',
     'about.technologies': 'Tecnologías, herramientas e idiomas',
+    
     'about.parrafo1':
-      '¡Hola! Soy Inés, ingeniera de software con un perfil versátil que combina ingeniería y tecnología con cultura y humanidades. Me interesa fusionar los dos tipos de disciplina para desarrollar software robusto y de calidad aplicado al ámbito cultural.',
+      'Soy Inés, ingeniera de software con un perfil versátil que combina ingeniería y tecnología con lenguaje y humanidades. Me interesa fusionar los dos tipos de disciplina para desarrollar software robusto y de calidad aplicado al ámbito cultural.',
     'about.parrafo2':
-      'Priorizo las arquitecturas limpias, la mantenibilidad y la calidad. Ante cualquier reto, investigo, exploro mis opciones y plasmo mi línea de pensamiento en buena documentación.',
-    'about.parrafo3':
-      'Cuando me alejo del ordenador, me encontrarás haciendo deporte, leyendo o disfrutando de algún videojuego.',
+      'Priorizo las arquitecturas limpias, la mantenibilidad y la calidad. Ante cualquier reto, investigo, exploro mis opciones y plasmo mi línea de pensamiento en una documentación de calidad.',
 
     'rss.blog.title': 'Blog de Inés',
     'rss.blog.description': 'Pensamientos, lecturas, cosas que aprendo, y otros temas relevantes',
@@ -88,7 +87,7 @@ export const ui = {
     'home.posts_recientes': 'Recent posts',
     'home.ver_todos': 'See all',
     'home.descripcion':
-      'Software Engineer. Student of the Digital Humanities Masters program at the Universidad Complutense de Madrid. I enjoy designing and implementing projects using new technologies.',
+      'Software Engineer specializing in NLP/ML. Student of the Digital Humanities masters program at UCM. Currently looking for internship positions in the fields of linguistic or cultural software development.',
 
     'proyectos.title': 'Inés Triviño | Projects',
     'proyectos.description': 'Projects created by Inés Triviño',
@@ -116,11 +115,9 @@ export const ui = {
     'about.description': 'Page to get more info on me and my tech abilities',
     'about.titulo': 'About me',
     'about.technologies': 'Tech, tools and languages',
-    'about.parrafo1': "Hi! I'm Inés, software engineer with a versatile profile that combines engineering and tech with culture and the humanities. I am interested in merging the two areas of knowledge to develop robust and quality software applied to the cultural field.",
 
+    'about.parrafo1': "Hi! I'm Inés, software engineer with a versatile profile that combines engineering and tech with language and the humanities. I am interested in merging the two areas of knowledge to develop robust and quality software applied to the cultural field.",
     'about.parrafo2': "I priorize clean, maintainable and quality architectures. Faced with a challenge I investigate, explore my options and outline my line of thinking in good documentation.",
-
-    'about.parrafo3': "When I step away from the computer, you'll find me working out, reading, or playing video games.",
 
     'rss.blog.title': 'Inés Blog',
     'rss.blog.description': 'Posts on projects, learning, reading or other relevant topics',
