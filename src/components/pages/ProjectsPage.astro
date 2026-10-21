@@ -10,7 +10,11 @@ const t = useTranslations(currentLang);
 const translatePath = useLocalizedPath(currentLang);
 
 // We get the collections corresponding to that language
-const allProjects = await getLocalizedProjects(currentLang);
+const projects = await getLocalizedProjects(currentLang);
+
+const allTechnologies = [
+    ...new Set(projects.flatMap((project) => project.data.technologies))
+].sort();
 
 // We obtain the rss feed path based on the current language
 const rssFeedPath = translatePath("projects.xml");
@@ -33,10 +37,28 @@ const rssFeedPath = translatePath("projects.xml");
             <RSSButton href={rssFeedPath} />
         </div>
 
+        <!-- FILTER BUTTONS -->
+        <div class="flex items-center gap-2 mb-10 mt-4">
+            <label for="tech-filter" class="font-mono text-sm uppercase">
+                Filter:
+            </label>
+            <select
+                id="tech-filter"
+                class="bg-secondary text-primary border border-primary font-mono px-3 py-1.5 focus:outline-none cursor-pointer"
+            >
+                <option value="all" selected>all</option>
+                {
+                    allTechnologies.map((tech) => (
+                        <option value={tech}>{tech}</option>
+                    ))
+                }
+            </select>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {
-                allProjects.length > 0 ? (
-                    allProjects.map((pro) => (
+                projects.length > 0 ? (
+                    projects.map((pro) => (
                         <ProjectCard
                             title={pro.data.title},
                             description={pro.data.description},
@@ -51,4 +73,26 @@ const rssFeedPath = translatePath("projects.xml");
             }
         </div>
     </section>
+
+    <script>
+    const techSelect = document.getElementById("tech-filter") as HTMLSelectElement | null;
+    const projectCards = document.querySelectorAll<HTMLElement>(".project-card");
+
+    if (techSelect) {
+        techSelect.addEventListener("change", (e) => {
+            const selectedTech = (e.target as HTMLSelectElement).value;
+
+            //for each card it checks whether it includes the desired technology, and if it does not, then it is undisplayed
+            projectCards.forEach((card) => {
+                const cardTechs: string[] = JSON.parse(card.getAttribute("data-technologies") || "[]");
+
+                if (selectedTech === "all" || cardTechs.includes(selectedTech)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    }
+    </script>
 </Layout>

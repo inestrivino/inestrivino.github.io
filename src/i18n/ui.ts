@@ -29,14 +29,14 @@ export const ui = {
     'home.descripcion':
       'Ingeniera de Software. Estudiante del Máster de Letras Digitales en la Universidad Complutense de Madrid. Disfruto diseñando e implementando proyectos con nuevas tecnologías.',
 
-    'proyectos.title': 'Inés Triviño - Proyectos',
+    'proyectos.title': 'Inés Triviño | Proyectos',
     'proyectos.description': 'Proyectos creados por Inés Triviño',
     'proyectos.titulo': 'Proyectos',
 
-    'blog.title': 'Inés Triviño - Blog',
+    'blog.title': 'Inés Triviño | Blog',
     'blog.description': 'Posts de mi blog',
 
-    'error.title': '404 - Ruta no encontrada',
+    'error.title': '404 | Ruta no encontrada',
     'error.description': 'Error 404',
     'error.error': 'en la dirección de memoria solicitada',
     'error.inicio': 'Volver al inicio',
@@ -51,7 +51,7 @@ export const ui = {
     'contenido.noSecciones': 'No hay secciones',
     'contenido.noContenido': 'Aún no hay nada aquí.',
 
-    'about.title': 'Inés Triviño - Sobre mí',
+    'about.title': 'Inés Triviño | Sobre mí',
     'about.description': 'Página para informarse más sobre mi y mis habilidades informáticas',
     'about.titulo': 'Sobre mí',
     'about.technologies': 'Tecnologías, herramientas e idiomas',
@@ -90,14 +90,14 @@ export const ui = {
     'home.descripcion':
       'Software Engineer. Student of the Digital Humanities Masters program at the Universidad Complutense de Madrid. I enjoy designing and implementing projects using new technologies.',
 
-    'proyectos.title': 'Inés Triviño - Projects',
+    'proyectos.title': 'Inés Triviño | Projects',
     'proyectos.description': 'Projects created by Inés Triviño',
     'proyectos.titulo': 'Projects',
 
-    'blog.title': 'Inés Triviño - Blog',
+    'blog.title': 'Inés Triviño | Blog',
     'blog.description': 'Posts from my blog',
 
-    'error.title': '404 - Route not found',
+    'error.title': '404 | Route not found',
     'error.description': '404 error',
     'error.error': 'in the solicited memory location',
     'error.inicio': 'Return to Home',
@@ -112,7 +112,7 @@ export const ui = {
     'contenido.noSecciones': 'There are no sections',
     'contenido.noContenido': 'There is nothing here yet.',
 
-    'about.title': 'Inés Triviño - About me',
+    'about.title': 'Inés Triviño | About me',
     'about.description': 'Page to get more info on me and my tech abilities',
     'about.titulo': 'About me',
     'about.technologies': 'Tech, tools and languages',

@@ -9,5 +9,6 @@ technologies:
 - java
 - jpa
 - bootstrap
-- websockets & AJAX
+- websockets
+- ajax
 ---

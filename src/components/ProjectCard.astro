@@ -15,7 +15,8 @@ const { title, description, url, coverImage, technologies=[] } = Astro.props;
 
 <a
   href={url} target="_blank"
-  class="cursor-pointer border border-primary flex flex-col group hover:border-primary relative bg-inherit sfx-project transition-transform duration-200 ease-out hover:scale-105 z-0 hover:z-10 decoration-none text-inherit"
+  data-technologies={JSON.stringify(technologies)}
+  class="cursor-pointer border border-primary flex flex-col group hover:border-primary relative bg-inherit sfx-project transition-transform duration-200 ease-out hover:scale-105 z-0 hover:z-10 decoration-none text-inherit project-card"
 >
   <div
     class="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-primary"
