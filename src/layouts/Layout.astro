@@ -24,6 +24,9 @@ const translatePath = useLocalizedPath(currentLang);
 
 const rssBlogPath = translatePath("blog.xml");
 const rssProjectsPath = translatePath("projects.xml");
+
+const defaultURL = "https://inestrivino.github.io/en";
+const esURL = "https://inestrivino.github.io/es";
 ---
 
 <!doctype html>
@@ -36,24 +39,39 @@ const rssProjectsPath = translatePath("projects.xml");
     <!-- SEO AND METADATA -->
     <meta name="description" content={description} />
     <meta name="author" content="Inés Triviño" />
-    <link rel="canonical" href="inestrivino.github.io" />
+    <link rel="canonical" href="https://inestrivino.github.io" />
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- UI and Icons -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://inestrivino.github.io/favicon.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="https://inestrivino.github.io/favicon.ico"
+    />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="inestrivino.github.io" />
+    <meta property="og:url" content="https://inestrivino.github.io" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/favicon.png" />
+    <meta
+      property="og:image"
+      content="https://inestrivino.github.io/favicon.ico"
+    />
 
     <!-- RSS feeds for self-discovery -->
     <link rel="alternate" type="application/rss+xml" href={rssBlogPath} />
     <link rel="alternate" type="application/rss+xml" href={rssProjectsPath} />
+
+    <!--Language tags -->
+    <link rel="alternate" hreflang="es" href={esURL} />
+    <link rel="alternate" hreflang="en" href={defaultURL} />
+    <link rel="alternate" hreflang="x-default" href={defaultURL} />
 
     <!-- CHANGE THEME AND MUTE WITHOUT FLICKER SCRIPT -->
     <script is:inline>
