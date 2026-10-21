@@ -2,7 +2,7 @@
 title: Ecomovil
 description: Web application for logistics of an electric vehicle fleet
 url: https://github.com/inestrivino/Ecomovil
-coverImage: /img/thumbs/ecomovil.png
+coverImage: /src/assets/thumbs/ecomovil.png
 featured: true
 technologies: 
 - html

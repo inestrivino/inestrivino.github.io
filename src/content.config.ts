@@ -12,10 +12,10 @@ const blogCollection = defineCollection({
 
 const projectsCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/projects" }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string(),
-    coverImage: z.string(),
+    coverImage: image(),
     featured: z.boolean().default(false),
     url: z.string(),
     technologies: z.array(z.string()).default([]),

@@ -1,11 +1,12 @@
 ---
+import { Image } from 'astro:assets';
 import SkillTag from "./SkillTag.astro"
 
 interface Props {
   title: string;
   description: string;
   url: string;
-  coverImage?: string;
+  coverImage?: ImageMetadata;
   technologies?: string[];
 }
 
@@ -36,9 +37,9 @@ const { title, description, url, coverImage, technologies=[] } = Astro.props;
   {
     coverImage ? (
       <div class="aspect-video w-full overflow-hidden">
-        <img
+        <Image
           src={coverImage}
-          alt={`Miniatura de ${title}`}
+          alt={`${title}`}
           class="w-full h-full object-cover"
         />
       </div>
