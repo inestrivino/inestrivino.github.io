@@ -1,26 +1,19 @@
 ---
 import { getLocalizedBlog, type Locale } from "../../i18n/utils";
-import { ui } from '../../i18n/ui';
 import BlogPostPage from "../../components/pages/BlogPostPage.astro";
 
 export async function getStaticPaths() {
-    const supportedLocales = Object.keys(ui) as Locale[];
-    const paths = [];
+    const lang = 'es'; // HARDCODED FOR EACH LANGUAGE
+    const blogPosts = await getLocalizedBlog(lang);
 
-    for (const lang of supportedLocales) {
-        const blogPosts = await getLocalizedBlog(lang);
+    return blogPosts.map((post) => {
+        const slug = post.id.replace(`${lang}/`, "").replace(/\.[^/.]+$/, "");
 
-        for (const post of blogPosts) {
-            const slug = post.id.replace(`${lang}/`, "");
-
-            paths.push({
-                params: { lang, slug },
-                props: { post, lang },
-            });
-        }
-    }
-
-    return paths;
+        return {
+            params: { slug },
+            props: { post, lang },
+        };
+    });
 }
 
 const { post, lang } = Astro.props;
