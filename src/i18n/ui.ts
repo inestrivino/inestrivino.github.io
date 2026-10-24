@@ -7,6 +7,8 @@ export const defaultLang = 'en';
 
 export const ui = {
   es: {
+    'filter': 'filtrar',
+
     'nav.inicio': 'inicio',
     'nav.sobremi': 'sobre mí',
     'nav.proyectos': 'proyectos',
@@ -55,7 +57,7 @@ export const ui = {
     'about.description': 'Página para informarse más sobre mi y mis habilidades informáticas',
     'about.titulo': 'Sobre mí',
     'about.technologies': 'Tecnologías, herramientas e idiomas',
-    
+
     'about.parrafo1':
       'Soy Inés, ingeniera de software con un perfil versátil que combina ingeniería y tecnología con lenguaje y humanidades. Me interesa fusionar los dos tipos de disciplina para desarrollar software robusto y de calidad aplicado al ámbito cultural.',
     'about.parrafo2':
@@ -67,6 +69,8 @@ export const ui = {
     'rss.projects.description': 'Posts sobre mis proyectos',
   },
   en: {
+    'filter': 'filter',
+
     'nav.inicio': 'home',
     'nav.sobremi': 'about me',
     'nav.proyectos': 'projects',

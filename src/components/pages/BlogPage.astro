@@ -4,8 +4,9 @@ import PostRow from "../PostRow.astro";
 import RSSButton from "../RSSButton.astro";
 
 import { useTranslations, useLocalizedPath, getLocalizedBlog, type Locale } from "../../i18n/utils";
+import { defaultLang } from "../../i18n/ui";
 
-const currentLang = (Astro.currentLocale || "es") as Locale;
+const currentLang = (Astro.currentLocale || defaultLang) as Locale;
 const t = useTranslations(currentLang);
 const translatePath = useLocalizedPath(currentLang);
 

@@ -6,9 +6,9 @@ import {
   useLocalizedPath,
   type Locale,
 } from "../i18n/utils";
-import { languages } from "../i18n/ui.ts";
+import { languages, defaultLang } from "../i18n/ui.ts";
 
-const currentLang = (Astro.currentLocale || "es") as Locale;
+const currentLang = (Astro.currentLocale || defaultLang) as Locale;
 const url = Astro.url;
 
 const t = useTranslations(currentLang);
