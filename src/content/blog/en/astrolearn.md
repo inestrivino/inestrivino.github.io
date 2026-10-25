@@ -28,6 +28,10 @@ Once I had made the decision on which technology would help me handle all the "i
 
 With this inspiration in mind, I made my first design prototypes in Figma:
 
+![Design for my landing page](../../../assets/content/Inicio.png)
+![Design of the projects page for my website](../../../assets/content/Proyectos.png)
+![Design of the blog page for my website](../../../assets/content/blog.png)
+
 While the design is completely possible without any kind of external library or framework, I wasn't very interested in reinventing the wheel with CSS (not to mention the complexity that would add to my CSS file structures), so I researched my options a bit until I discovered [Tailwind CSS](https://tailwindcss.com/). It provides utility classes to lighten the styling process, and its installation in Astro is direct and simple. I also chose it because I had heard quite a bit about it and thought it was a good opportunity to learn how to use it.
 
 Because of its simple installation in an Astro project, I chose [Lucide icons](https://lucide.dev/).
@@ -61,7 +65,7 @@ Near the end, I was interested in implementing an RSS feed, as this is a feature
 I also wanted there to be a certain level of "discoverability" for my site and RSS feeds (this is good because it allows users to put the main link to my page into their trusted RSS reader so all options appear automatically, instead of having to search for it manually on my site, copy it, and paste it).
 Therefore, following the instructions in the Astro documentation, [I created a sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/), meaning a guide to my site's structure for web crawlers. I included it in the `<head>` of my layout and in the `robots.txt` file. I also added metadata, icons, Open Graph elements, and RSS feeds to the head.
 
-Another element that contributes to a website's SEO is optimization—specifically, that it doesn't take long to load. My site is not very large, but it does feature many images to showcase my projects. For this reason, I did some research and discovered that Astro also has a feature that, if everything is properly configured, automatically transforms `.png` images into `.webp`, a format that takes up less space and loads faster. I implemented it, and now I don't have to worry about `.png` images I add to the project slowing down the page.
+Another element that contributes to a website's SEO is optimization, specifically, that it doesn't take long to load. My site is not very large, but it does feature many images to showcase my projects. For this reason, I did some research and discovered that Astro also has a feature that, if everything is properly configured, automatically transforms `.png` images into `.webp`, a format that takes up less space and loads faster. I implemented it, and now I don't have to worry about `.png` images I add to the project slowing down the page.
 
 ## Conclusion
 
